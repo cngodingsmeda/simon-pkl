@@ -1,0 +1,42 @@
+{
+    "data": {
+        "id": 4447,
+        "nama": "Gheral Deva Backend Archana",
+        "nis": 33463143,
+        "status": "belum_pkl",
+        "jenis_kelamin": "laki",
+        "tanggal_masuk": null,
+        "tanggal_keluar": null,
+        "guru_pembimbing": {
+            "id": 7803,
+            "nama": "haqi",
+            "nip": 132334353,
+            "no_telepon": "123556789123",
+            "agama": "islam",
+            "jenis_kelamin": "laki",
+            "tanggal_lahir": "17 januari 2008",
+            "tempat_lahir": "rhee loka"
+        },
+        "jurusan": {
+            "id": 8980,
+            "nama": "rekayasa perangkat lunak"
+        },
+        "kelas": {
+            "id": 8701,
+            "nama": "X RPL",
+            "tahun": "2023",
+            "id_jurusan": 8980
+        },
+        "alamat": {
+            "id_siswa": 4447,
+            "detail_tempat": "Jl. Horang Kaya",
+            "desa": "rhee",
+            "kecamatan": "Kabupaten Malang",
+            "kabupaten": "mataram",
+            "provinsi": "Jawa Timur",
+            "negara": "Indonesia"
+        },
+        "dudi": null,
+        "pembimbing_dudi": null
+    }
+}
