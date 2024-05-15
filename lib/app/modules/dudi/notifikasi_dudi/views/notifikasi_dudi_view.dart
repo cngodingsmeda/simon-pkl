@@ -1,17 +1,14 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:simon_pkl/material/material.dart';
-
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 import 'package:simon_pkl/app/modules/dudi/notifikasi_dudi/notifikasi_dudi_widget.dart';
 import '../controllers/notifikasi_dudi_controller.dart';
 
 class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
-
-  var notif = 1;
+  final int notif = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +56,6 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                 Container(
                   alignment: Alignment.centerRight,
                   margin: EdgeInsets.symmetric(
-                    // horizontal: 5,
                     vertical: 30,
                   ),
                   child: Icon(
@@ -79,9 +75,7 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                     Icons.access_time_sharp,
                     color: AllMaterial.colorWhite,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
+                  SizedBox(width: 10),
                   Text(
                     "Pesan akan terhapus dalam 24 Jam terakhir",
                     style: TextStyle(
@@ -103,6 +97,18 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                   child: Container(
                     height: 55,
                     width: Get.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AllMaterial.colorWhite,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AllMaterial.colorGrey.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -121,6 +127,10 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                           alignment: Alignment.center,
                           height: 30,
                           width: 80,
+                          decoration: BoxDecoration(
+                            color: AllMaterial.colorGrey.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                           child: Text(
                             '$notif',
                             style: TextStyle(
@@ -129,102 +139,45 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                               fontSize: 18,
                             ),
                           ),
-                          decoration: BoxDecoration(
-                            color: AllMaterial.colorGrey.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AllMaterial.colorWhite,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AllMaterial.colorGrey.withOpacity(0.3),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(0, 3),
-                        ),
+                        // SizedBox(width: 10),
                       ],
                     ),
                   ),
                 ),
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
+                // SizedBox(height: 20),
+                notif == 0
+                    ? Center(
+                        heightFactor: 13,
+                        child: Text(
+                          "Belum ada pesan",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: AllMaterial.fontFamily,
+                            fontSize: 20,
+                            color: AllMaterial.colorGrey.withOpacity(.4),
+                          ),
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 10, left: 10, right: 10),
+                        child: SizedBox(
+                          height: Get.height,
+                          child: ListView.builder(
+                            itemCount: notif,
+                            itemBuilder: (context, index) => NotifikasiItemDudi(
+                              contextTitle: "Kabar baik untukmu!",
+                              subTitle:
+                                  "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
+                              contextImage: "assets/logo/accept.png",
+                              onTapFunc: () {
+                                // Get.toNamed(RoutesName.settingsPage);
+                              },
+                            ),
+                          ),
+                        ),
                       ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                      NotifikasiItemDudi(
-                        onTapFunc: () {},
-                        contextTitle: "ppppppppppp",
-                        subTitle: "suki",
-                        contextImage: "assets/logo/accept.png",
-                      ),
-                    ],
-                  ),
-                )
               ],
             ),
           ],
@@ -233,10 +186,3 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
     );
   }
 }
-
-// NotifikasiItemDudi(
-//               onTapFunc: () {},
-//               contextTitle: "hah",
-//               subTitle: 'sus',
-//               contextImage: "assets/logo/accept.png",
-//             )
