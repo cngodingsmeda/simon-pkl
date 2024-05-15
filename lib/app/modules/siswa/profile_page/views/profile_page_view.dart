@@ -98,7 +98,9 @@ class ProfilePageView extends GetView<ProfilePageController> {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 30, horizontal: 15),
+                      vertical: 30,
+                      horizontal: 15,
+                    ),
                     child: Column(
                       children: [
                         ProfileItem(),

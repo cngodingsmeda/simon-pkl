@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/bx.dart';
-import 'package:iconify_flutter/icons/bxs.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:simon_pkl/app/modules/dudi/data_siswa_dudi/views/data_siswa_dudi_view.dart';
+import 'package:simon_pkl/app/modules/dudi/home_dudi/controllers/home_dudi_controller.dart';
 import 'package:simon_pkl/app/modules/dudi/home_page_dudi/views/home_page_dudi_view.dart';
 import 'package:simon_pkl/app/modules/dudi/notifikasi_dudi/views/notifikasi_dudi_view.dart';
 import 'package:simon_pkl/app/modules/dudi/profile_dudi/views/profile_dudi_view.dart';
@@ -18,16 +17,21 @@ class HomeDudi extends StatefulWidget {
 }
 
 class _HomeDudiState extends State<HomeDudi> {
+  var dataDudi = HomeDudiController();
+
   int selectedIndex = 0;
 
   final PageController pageController = PageController(initialPage: 0);
 
-  void onItemTapped(int index) {
+  void onItemTapped(int index) async {
     pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
       curve: Curves.ease,
     );
+    if (index == 3) {
+      await dataDudi.fetchDataDudi();
+    }
   }
 
   @override
@@ -95,18 +99,18 @@ class _HomeDudiState extends State<HomeDudi> {
           BottomNavigationBarItem(
             // icon: Icon(Icons.data_saver_off_sharp),
             icon: (selectedIndex == 1)
-                ? Iconify(
-                    Bxs.pie_chart_alt,
+                ? Icon(
+                    MdiIcons.textBoxSearchOutline,
                     color: (selectedIndex == 1)
                         ? AllMaterial.colorBlue
                         : AllMaterial.colorGrey,
                   )
-                : const Iconify(
-                    Bx.pie_chart_alt,
+                : Icon(
+                    MdiIcons.textBoxSearchOutline,
                     color: AllMaterial.colorGrey,
                   ),
-            label: "Laporan",
-            tooltip: "Laporan",
+            label: "Data Siswa",
+            tooltip: "Data Siswa",
           ),
           BottomNavigationBarItem(
             icon: (selectedIndex == 2)

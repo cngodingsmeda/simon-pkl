@@ -108,7 +108,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.NOTIFIKASI_DUDI,
-      page: () => const NotifikasiDudiView(),
+      page: () => NotifikasiDudiView(),
       binding: NotifikasiDudiBinding(),
     ),
     GetPage(
