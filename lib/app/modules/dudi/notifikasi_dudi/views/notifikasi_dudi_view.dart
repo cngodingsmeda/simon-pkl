@@ -8,7 +8,7 @@ import 'package:simon_pkl/app/modules/dudi/notifikasi_dudi/notifikasi_dudi_widge
 import '../controllers/notifikasi_dudi_controller.dart';
 
 class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
-  final int notif = 0;
+  final int notif = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -165,17 +165,23 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                         child: SizedBox(
                           height: Get.height,
                           child: ListView.builder(
-                            itemCount: notif,
-                            itemBuilder: (context, index) => NotifikasiItemDudi(
-                              contextTitle: "Kabar baik untukmu!",
-                              subTitle:
-                                  "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
-                              contextImage: "assets/logo/accept.png",
-                              onTapFunc: () {
-                                // Get.toNamed(RoutesName.settingsPage);
-                              },
-                            ),
-                          ),
+                              itemCount: notif,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    NotifikasiItemDudi(
+                                      contextTitle: "Kabar baik untukmu!",
+                                      subTitle:
+                                          "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
+                                      contextImage: "assets/logo/accept.png",
+                                      onTapFunc: () {
+                                        // Get.toNamed(RoutesName.settingsPage);
+                                      },
+                                    ),
+                                    // SizedBox(height: 20),
+                                  ],
+                                );
+                              }),
                         ),
                       ),
               ],

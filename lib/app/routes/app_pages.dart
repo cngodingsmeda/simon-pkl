@@ -113,7 +113,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DATA_SISWA_DUDI,
-      page: () => const DataSiswaDudiView(),
+      page: () => DataSiswaDudiView(),
       binding: DataSiswaDudiBinding(),
     ),
     GetPage(

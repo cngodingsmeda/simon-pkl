@@ -21,7 +21,7 @@ class NotifikasiItemDudi extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: EdgeInsets.only(left: 20, right: 20),
           height: Get.height * 0.125,
           width: Get.width,
           child: InkWell(
@@ -40,12 +40,12 @@ class NotifikasiItemDudi extends StatelessWidget {
                 ],
               ),
               child: ListTile(
-                // contentPadding: const EdgeInsets.only(
-                //   // top: 8,
-                //   bottom: 8,
-                //   // right: 10,
-                //   // left: 10,
-                // ),
+                contentPadding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                  right: 10,
+                  left: 10,
+                ),
                 leading: Image(
                   width: 40,
                   image: AssetImage(
@@ -71,13 +71,13 @@ class NotifikasiItemDudi extends StatelessWidget {
                     color: AllMaterial.colorBlack,
                   ),
                 ),
-                // trailing: const Icon(
-                //   Icons.arrow_forward_ios_outlined,
-                // ),
               ),
             ),
           ),
         ),
+        SizedBox(
+          height: 20,
+        )
       ],
     );
   }
