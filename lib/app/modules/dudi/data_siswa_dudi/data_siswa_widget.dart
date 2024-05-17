@@ -25,11 +25,8 @@ class DataSiswaWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: Get.height * 0.47,
-        ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: ExpansionTile(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -37,18 +34,82 @@ class DataSiswaWidget extends StatelessWidget {
             collapsedShape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            title: Text(
-              'Siswa',
-              style: TextStyle(
-                fontFamily: AllMaterial.fontFamily,
-                color: AllMaterial.colorWhite,
+            title: Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Text(
+                'Siswa',
+                style: TextStyle(
+                  fontFamily: AllMaterial.fontFamily,
+                  color: AllMaterial.colorWhite,
+                  fontWeight: AllMaterial.fontSemiBold,
+                  fontSize: 17,
+                ),
               ),
             ),
             backgroundColor: AllMaterial.colorBlue,
             collapsedBackgroundColor: AllMaterial.colorBlue,
-            trailing: Icon(
-              MdiIcons.dotsVertical,
+            trailing: PopupMenuButton(
               color: AllMaterial.colorWhite,
+              surfaceTintColor: AllMaterial.colorWhite,
+              iconColor: AllMaterial.colorWhite,
+              icon: Icon(
+                MdiIcons.dotsVertical,
+              ),
+              itemBuilder: (context) {
+                return [
+                  // Popup Menu Laporkan Siswa
+                  PopupMenuItem(
+                    onTap: () => AllMaterial.dialogSimon(
+                      msg: "Apakah Anda ingin Logout?",
+                      msgC:
+                          "Jika Anda logout, semua laporan anda saat ini tidak dapat diakses kecuali anda login kembali.",
+                      onCancel: () => print("Batal Laporkan Siswa"),
+                      onConfirm: () {},
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: Get.width * 0.5,
+                      height: 50,
+                      color: Colors.red,
+                      child: Text(
+                        "Laporkan Siswa",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AllMaterial.colorGreySec,
+                          fontFamily: AllMaterial.fontFamily,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Popup Menu Pindahkan Siswa
+                  PopupMenuItem(
+                    onTap: () => AllMaterial.dialogSimon(
+                      msg: "Apakah Anda ingin Logout?",
+                      msgC:
+                          "Jika Anda logout, semua laporan anda saat ini tidak dapat diakses kecuali anda login kembali.",
+                      onCancel: () => print("Batal Pindahkan Siswa"),
+                      onConfirm: () {},
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: Get.width * 0.5,
+                      height: 50,
+                      color: AllMaterial.colorGreySec,
+                      child: Text(
+                        "Pindahkan Siswa",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontFamily: AllMaterial.fontFamily,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                  ),
+                ];
+              },
             ),
             children: [
               Container(

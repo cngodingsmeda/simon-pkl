@@ -6,7 +6,7 @@ import 'package:simon_pkl/app/modules/dudi/notifikasi_dudi/notifikasi_dudi_widge
 import '../controllers/notifikasi_dudi_controller.dart';
 
 class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
-  final int notif = 10;
+  final int notif = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +75,10 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: 50,
-                    left: 50,
+                    right: context.mediaQueryPadding.right + 50,
+                    left: context.mediaQueryPadding.left + 50,
                     top: context.mediaQueryPadding.top * 10.5,
-                    bottom: 30,
+                    bottom: context.mediaQueryPadding.bottom + 30,
                   ),
                   child: Container(
                     height: 55,
@@ -138,7 +138,7 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                   hasScrollBody: false,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
+                      padding: const EdgeInsets.only(bottom: 15),
                       child: Text(
                         "Belum ada pesan",
                         textAlign: TextAlign.center,

@@ -10,133 +10,133 @@ import '../controllers/data_siswa_dudi_controller.dart';
 
 class DataSiswaDudiView extends GetView<DataSiswaDudiController> {
   final RxBool _folded = true.obs;
+  final int jumlahSiswa = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            ClipPath(
-              clipper: ClipPathClass(),
-              child: Container(
-                height: 300,
-                width: Get.width,
-                color: AllMaterial.colorBlue,
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Obx(
-              () => Padding(
-                padding: EdgeInsets.only(
-                  top: 40,
-                  right: 20,
-                  left: 20,
-                ),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 400),
-                    width: _folded.value ? 56 : Get.width,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(32),
-                      color: AllMaterial.colorWhite,
-                      boxShadow: kElevationToShadow[6],
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(left: 16),
-                            child: !_folded.value
-                                ? TextField(
-                                    decoration: InputDecoration(
-                                      hintText: 'Search',
-                                      hintStyle: TextStyle(
-                                          color: AllMaterial.colorBlue),
-                                      border: InputBorder.none,
-                                    ),
-                                  )
-                                : null,
-                          ),
-                        ),
-                        AnimatedContainer(
-                          duration: Duration(microseconds: 400),
-                          child: Material(
-                            type: MaterialType.transparency,
-                            child: InkWell(
-                              borderRadius: BorderRadius.only(
-                                topLeft:
-                                    Radius.circular(_folded.value ? 32 : 0),
-                                topRight: Radius.circular(32),
-                                bottomLeft:
-                                    Radius.circular(_folded.value ? 32 : 0),
-                                bottomRight: Radius.circular(32),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Stack(
+              children: [
+                ClipPath(
+                  clipper: ClipPathClass(),
+                  child: Container(
+                    height: 300,
+                    width: Get.width,
+                    color: AllMaterial.colorBlue,
+                    child: SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: context.mediaQueryPadding.top + 100,
+                                left: context.mediaQueryPadding.left + 90,
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Icon(
-                                  _folded.value ? Icons.search : Icons.close,
-                                  color: AllMaterial.colorBlue,
+                              child: Text(
+                                "Data Siswa",
+                                style: TextStyle(
+                                  fontFamily: AllMaterial.fontFamily,
+                                  fontSize: 35,
+                                  fontWeight: AllMaterial.fontSemiBold,
+                                  color: AllMaterial.colorWhite.withOpacity(.8),
                                 ),
                               ),
-                              onTap: () {
-                                _folded.value = !_folded.value;
-                              },
                             ),
-                          ),
+                            Container(
+                              // margin: EdgeInsets.symmetric(vertical: 10),
+                              child: Icon(
+                                MdiIcons.textBoxSearchOutline,
+                                size: 210,
+                                color: AllMaterial.colorWhite.withOpacity(.2),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              margin: EdgeInsets.only(right: 180, top: 50),
-              child: Icon(
-                MdiIcons.textBoxSearchOutline,
-                size: 210,
-                color: AllMaterial.colorWhite.withOpacity(.2),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: 90,
-                top: 150,
-                left: 90,
-                right: 90,
-              ),
-              child: Text(
-                "Data Siswa",
-                style: TextStyle(
-                  fontFamily: AllMaterial.fontFamily,
-                  fontSize: 35,
-                  fontWeight: AllMaterial.fontSemiBold,
-                  color: AllMaterial.colorWhite.withOpacity(.8),
-                ),
-              ),
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: Get.height * 0.33,
+                Obx(
+                  () => Padding(
+                    padding: EdgeInsets.only(
+                      top: 40,
+                      right: 20,
+                      left: 20,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 400),
+                        width: _folded.value ? 56 : Get.width,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                          color: AllMaterial.colorWhite,
+                          boxShadow: kElevationToShadow[6],
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(left: 16),
+                                child: !_folded.value
+                                    ? TextField(
+                                        decoration: InputDecoration(
+                                          hintText: 'Cari Siswa',
+                                          hintStyle: TextStyle(
+                                              color: AllMaterial.colorBlue),
+                                          border: InputBorder.none,
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                            ),
+                            AnimatedContainer(
+                              duration: Duration(microseconds: 400),
+                              child: Material(
+                                type: MaterialType.transparency,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft:
+                                        Radius.circular(_folded.value ? 32 : 0),
+                                    topRight: Radius.circular(32),
+                                    bottomLeft:
+                                        Radius.circular(_folded.value ? 32 : 0),
+                                    bottomRight: Radius.circular(32),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Icon(
+                                      _folded.value
+                                          ? Icons.search
+                                          : Icons.close,
+                                      color: AllMaterial.colorBlue,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    _folded.value = !_folded.value;
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  padding: EdgeInsets.only(
+                    right: context.mediaQueryPadding.right + 70,
+                    left: context.mediaQueryPadding.left + 70,
+                    top: context.mediaQueryPadding.top * 10.5,
+                    bottom: context.mediaQueryPadding.bottom + 20,
+                  ),
                   child: Container(
                     height: 55,
                     width: Get.width,
@@ -156,7 +156,7 @@ class DataSiswaDudiView extends GetView<DataSiswaDudiController> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 30),
+                          padding: const EdgeInsets.only(left: 10),
                           child: Text(
                             "Siswa : ",
                             style: TextStyle(
@@ -175,7 +175,7 @@ class DataSiswaDudiView extends GetView<DataSiswaDudiController> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            '0',
+                            '$jumlahSiswa',
                             style: TextStyle(
                               fontWeight: AllMaterial.fontBold,
                               fontFamily: AllMaterial.fontFamily,
@@ -183,30 +183,59 @@ class DataSiswaDudiView extends GetView<DataSiswaDudiController> {
                             ),
                           ),
                         ),
-                        // SizedBox(width: 10),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: context.mediaQueryPadding.top * 14),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Divider(
                 thickness: 2,
-                color: AllMaterial.colorBlack.withOpacity(.4),
               ),
             ),
-            DataSiswaWidget(
-              namaSiswa: 'Adit',
-              nisn: 2012039,
-              agama: 'Islam',
-              jenisKelamin: 'Laki',
-              jurusan: 'RPL',
-              noTelepon: 123456,
-            )
-          ],
-        ),
+          ),
+          jumlahSiswa == 0
+              ? SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Text(
+                        "Belum ada data",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: AllMaterial.fontFamily,
+                          fontSize: 20,
+                          color: AllMaterial.colorGrey.withOpacity(.4),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return Column(
+                        children: [
+                          DataSiswaWidget(
+                            namaSiswa: 'Adit',
+                            nisn: 2012039,
+                            agama: 'Islam',
+                            jenisKelamin: 'Laki',
+                            jurusan: 'RPL',
+                            noTelepon: 123456,
+                          )
+                        ],
+                      );
+                    },
+                    childCount: jumlahSiswa,
+                  ),
+                ),
+        ],
       ),
     );
   }
