@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class NotifikasiDudiController extends GetxController {
-  //TODO: Implement NotifikasiDudiController
 
   final count = 0.obs;
   @override
