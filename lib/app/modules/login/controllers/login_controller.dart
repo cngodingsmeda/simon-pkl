@@ -25,7 +25,7 @@ class LoginController extends GetxController {
   RxBool isObsecure = true.obs;
   String getDataUrl = "";
   static String tokenLogin = AllMaterial.box.read("token");
-  final dataAuth = AllMaterial.box.read("authentikasi");
+  var dataAuth = "";
   final dataLoginDudi = AllMaterial.box.read("dataLoginDudi");
   final dataLoginGuru = AllMaterial.box.read("dataLoginGuru");
   final dataLoginSiswa = AllMaterial.box.read("dataLoginSiswa");
@@ -50,10 +50,10 @@ class LoginController extends GetxController {
           if (data["auth"] == "pembimbing dudi") {
             getDataUrl = getDudiUrl;
             AllMaterial.box.write("authentikasi", data["auth"]);
+            dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
             isAuth.value = true;
             isDudi.value = true;
-            isAuth.refresh();
             Get.reset();
             print("apakah auth sebagai dudi? : $isAuth");
             return data;
@@ -62,6 +62,7 @@ class LoginController extends GetxController {
             isAuth.value = true;
             isGuru.value = true;
             AllMaterial.box.write("authentikasi", data["auth"]);
+            dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
             print("apakah auth sebagai guru? : $isAuth");
             return data;
@@ -70,6 +71,7 @@ class LoginController extends GetxController {
             isAuth.value = true;
             isSiswa.value = true;
             AllMaterial.box.write("authentikasi", data["auth"]);
+            dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
             print("apakah auth sebagai siswa? : $isAuth");
             return data;

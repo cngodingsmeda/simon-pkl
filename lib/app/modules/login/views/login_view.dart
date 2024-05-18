@@ -11,10 +11,11 @@ import '../controllers/login_controller.dart';
 var loginC = Get.put(LoginController());
 
 class LoginView extends GetView<LoginController> {
-  
   LoginView({super.key});
   @override
   Widget build(BuildContext context) {
+    Get.put(LoginController());
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),

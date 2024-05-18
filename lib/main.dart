@@ -16,7 +16,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await initializeDateFormatting();
-  Get.put(LoginController());
   runApp(
     GetMaterialApp(
       locale: Locale("id"),
@@ -25,35 +24,21 @@ void main() async {
       home: FutureBuilder(
         future: Future.delayed(const Duration(seconds: 3)),
         builder: (context, snapshot) {
-          Get.reload<LoginController>(force: true);
           if (snapshot.connectionState == ConnectionState.done) {
+            Get.put(LoginController());
             final auth = Get.find<LoginController>();
             return FutureBuilder(
               future: auth.autoLogin(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  if (auth.dataAuth != null && auth.dataLoginDudi != null) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Get.reloadAll();
-                      Get.offAll(() => HomeDudi());
-                    });
-                  } else if (auth.dataAuth != null &&
-                      auth.dataLoginSiswa != null) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Get.reloadAll();
-                      Get.offAll(() => HomeSiswa());
-                    });
-                  } else if (auth.dataAuth != null &&
-                      auth.dataLoginGuru != null) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Get.reloadAll();
-                      Get.offAll(() => HomeGuruView());
-                    });
+                  if (auth.dataLoginDudi != null) {
+                    return HomeDudi();
+                  } else if (auth.dataLoginSiswa != null) {
+                    return HomeSiswa();
+                  } else if (auth.dataLoginGuru != null) {
+                    return HomeGuruView();
                   } else {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Get.reloadAll();
-                      Get.offAll(() => LoginView());
-                    });
+                    return LoginView();
                   }
                 } else if (snapshot.hasError) {
                   print(snapshot.error);
