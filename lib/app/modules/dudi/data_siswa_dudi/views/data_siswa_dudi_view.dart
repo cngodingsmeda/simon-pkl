@@ -89,6 +89,8 @@ class DataSiswaDudiView extends GetView<DataSiswaDudiController> {
                                         decoration: InputDecoration(
                                           hintText: 'Cari Siswa',
                                           hintStyle: TextStyle(
+                                              fontFamily:
+                                                  AllMaterial.fontFamily,
                                               color: AllMaterial.colorBlue),
                                           border: InputBorder.none,
                                         ),

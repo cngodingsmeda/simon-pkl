@@ -49,7 +49,11 @@ class DataSiswaWidget extends StatelessWidget {
             backgroundColor: AllMaterial.colorBlue,
             collapsedBackgroundColor: AllMaterial.colorBlue,
             trailing: PopupMenuButton(
-              color: AllMaterial.colorWhite,
+              color: Colors.transparent,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
               surfaceTintColor: AllMaterial.colorWhite,
               iconColor: AllMaterial.colorWhite,
               icon: Icon(
@@ -70,7 +74,13 @@ class DataSiswaWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       width: Get.width * 0.5,
                       height: 50,
-                      color: Colors.red,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                        color: Colors.red,
+                      ),
                       child: Text(
                         "Laporkan Siswa",
                         textAlign: TextAlign.center,
@@ -96,7 +106,13 @@ class DataSiswaWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       width: Get.width * 0.5,
                       height: 50,
-                      color: AllMaterial.colorGreySec,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                        color: AllMaterial.colorWhite,
+                      ),
                       child: Text(
                         "Pindahkan Siswa",
                         textAlign: TextAlign.center,
