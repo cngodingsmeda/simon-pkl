@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/dudi/data_siswa_dudi/bindings/data_siswa_dudi_binding.dart';
 import '../modules/dudi/data_siswa_dudi/views/data_siswa_dudi_view.dart';
+import '../modules/dudi/detail_notifikasi_dudi/bindings/detail_notifikasi_dudi_binding.dart';
+import '../modules/dudi/detail_notifikasi_dudi/views/detail_notifikasi_dudi_view.dart';
 import '../modules/dudi/home_dudi/bindings/home_dudi_binding.dart';
 import '../modules/dudi/home_dudi/views/home_dudi_view.dart';
 import '../modules/dudi/home_page_dudi/bindings/home_page_dudi_binding.dart';
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.PROFILE_DUDI,
       page: () => ProfileDudiView(),
       binding: ProfileDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_NOTIFIKASI_DUDI,
+      page: () => DetailNotifikasiDudiView(),
+      binding: DetailNotifikasiDudiBinding(),
     ),
   ];
 }
