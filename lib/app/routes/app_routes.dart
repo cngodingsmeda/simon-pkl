@@ -25,6 +25,7 @@ abstract class Routes {
   static const PROFILE_DUDI = _Paths.DUDI + _Paths.PROFILE_DUDI;
   static const DETAIL_NOTIFIKASI_DUDI =
       _Paths.DUDI + _Paths.DETAIL_NOTIFIKASI_DUDI;
+  static const PENGAJUAN_PKL = _Paths.DUDI + _Paths.PENGAJUAN_PKL;
 }
 
 abstract class _Paths {
@@ -49,4 +50,5 @@ abstract class _Paths {
   static const DATA_SISWA_DUDI = '/data-siswa-dudi';
   static const PROFILE_DUDI = '/profile-dudi';
   static const DETAIL_NOTIFIKASI_DUDI = '/detail-notifikasi-dudi';
+  static const PENGAJUAN_PKL = '/pengajuan-pkl';
 }

@@ -10,6 +10,8 @@ import '../modules/dudi/home_page_dudi/bindings/home_page_dudi_binding.dart';
 import '../modules/dudi/home_page_dudi/views/home_page_dudi_view.dart';
 import '../modules/dudi/notifikasi_dudi/bindings/notifikasi_dudi_binding.dart';
 import '../modules/dudi/notifikasi_dudi/views/notifikasi_dudi_view.dart';
+import '../modules/dudi/pengajuan_pkl/bindings/pengajuan_pkl_binding.dart';
+import '../modules/dudi/pengajuan_pkl/views/pengajuan_pkl_view.dart';
 import '../modules/dudi/profile_dudi/bindings/profile_dudi_binding.dart';
 import '../modules/dudi/profile_dudi/views/profile_dudi_view.dart';
 import '../modules/guru_pembimbing/home_guru/bindings/home_guru_binding.dart';
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.DETAIL_NOTIFIKASI_DUDI,
       page: () => DetailNotifikasiDudiView(),
       binding: DetailNotifikasiDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGAJUAN_PKL,
+      page: () => PengajuanPklView(),
+      binding: PengajuanPklBinding(),
     ),
   ];
 }

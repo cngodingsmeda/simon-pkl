@@ -165,7 +165,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Pengajuan PKL",
-                  onTap: () => print("Pengajuan PKL"),
+                  onTap: () => Get.toNamed('/pengajuan-pkl'),
                 ),
               ],
             ),
