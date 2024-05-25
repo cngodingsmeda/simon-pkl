@@ -2,12 +2,20 @@ import 'package:get/get.dart';
 
 import '../modules/dudi/data_siswa_dudi/bindings/data_siswa_dudi_binding.dart';
 import '../modules/dudi/data_siswa_dudi/views/data_siswa_dudi_view.dart';
+import '../modules/dudi/detail_notifikasi_dudi/bindings/detail_notifikasi_dudi_binding.dart';
+import '../modules/dudi/detail_notifikasi_dudi/views/detail_notifikasi_dudi_view.dart';
 import '../modules/dudi/home_dudi/bindings/home_dudi_binding.dart';
 import '../modules/dudi/home_dudi/views/home_dudi_view.dart';
 import '../modules/dudi/home_page_dudi/bindings/home_page_dudi_binding.dart';
 import '../modules/dudi/home_page_dudi/views/home_page_dudi_view.dart';
+import '../modules/dudi/monitoring_siswa_dudi/bindings/monitoring_siswa_dudi_binding.dart';
+import '../modules/dudi/monitoring_siswa_dudi/views/monitoring_siswa_dudi_view.dart';
 import '../modules/dudi/notifikasi_dudi/bindings/notifikasi_dudi_binding.dart';
 import '../modules/dudi/notifikasi_dudi/views/notifikasi_dudi_view.dart';
+import '../modules/dudi/pengajuan_pkl/bindings/pengajuan_pkl_binding.dart';
+import '../modules/dudi/pengajuan_pkl/views/pengajuan_pkl_view.dart';
+import '../modules/dudi/pengaturan_jadwal_dudi/bindings/pengaturan_jadwal_dudi_binding.dart';
+import '../modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_view.dart';
 import '../modules/dudi/profile_dudi/bindings/profile_dudi_binding.dart';
 import '../modules/dudi/profile_dudi/views/profile_dudi_view.dart';
 import '../modules/guru_pembimbing/home_guru/bindings/home_guru_binding.dart';
@@ -120,6 +128,26 @@ class AppPages {
       name: _Paths.PROFILE_DUDI,
       page: () => ProfileDudiView(),
       binding: ProfileDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_NOTIFIKASI_DUDI,
+      page: () => DetailNotifikasiDudiView(),
+      binding: DetailNotifikasiDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGAJUAN_PKL,
+      page: () => PengajuanPklView(),
+      binding: PengajuanPklBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_JADWAL_DUDI,
+      page: () => PengaturanJadwalDudiView(),
+      binding: PengaturanJadwalDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.MONITORING_SISWA_DUDI,
+      page: () => MonitoringSiswaDudiView(),
+      binding: MonitoringSiswaDudiBinding(),
     ),
   ];
 }

@@ -162,7 +162,7 @@ class NotifikasiDudiView extends GetView<NotifikasiDudiController> {
                                 "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
                             contextImage: "assets/logo/accept.png",
                             onTapFunc: () {
-                              // Get.toNamed(RoutesName.settingsPage);
+                              Get.toNamed('/detail-notifikasi-dudi');
                             },
                           ),
                         ],
