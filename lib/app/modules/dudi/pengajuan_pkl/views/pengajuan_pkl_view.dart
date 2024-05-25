@@ -9,7 +9,6 @@ import 'package:simon_pkl/material/material.dart';
 // ignore: must_be_immutable
 class PengajuanPklView extends GetView<PengajuanPklController> {
   // const PengajuanPklView({Key? key}) : super(key: key);
-  final RxBool _folded = true.obs;
   int TotalPengajuan = 0;
 
   @override
@@ -73,77 +72,6 @@ class PengajuanPklView extends GetView<PengajuanPklController> {
                     ),
                   ),
                 ),
-                Obx(
-                  () => Padding(
-                    padding: EdgeInsets.only(
-                      top: 40,
-                      right: 20,
-                      left: 20,
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 400),
-                        width: _folded.value ? 56 : Get.width,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(32),
-                          color: AllMaterial.colorWhite,
-                          boxShadow: kElevationToShadow[6],
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.only(left: 16),
-                                child: !_folded.value
-                                    ? TextField(
-                                        decoration: InputDecoration(
-                                          hintText: 'Cari Pengajuan PKL',
-                                          hintStyle: TextStyle(
-                                              fontFamily:
-                                                  AllMaterial.fontFamily,
-                                              color: AllMaterial.colorBlue),
-                                          border: InputBorder.none,
-                                        ),
-                                      )
-                                    : null,
-                              ),
-                            ),
-                            AnimatedContainer(
-                              duration: Duration(microseconds: 400),
-                              child: Material(
-                                type: MaterialType.transparency,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft:
-                                        Radius.circular(_folded.value ? 32 : 0),
-                                    topRight: Radius.circular(32),
-                                    bottomLeft:
-                                        Radius.circular(_folded.value ? 32 : 0),
-                                    bottomRight: Radius.circular(32),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Icon(
-                                      _folded.value
-                                          ? Icons.search
-                                          : Icons.close,
-                                      color: AllMaterial.colorBlue,
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    _folded.value = !_folded.value;
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: EdgeInsets.only(
                     right: context.mediaQueryPadding.right + 30,
@@ -175,7 +103,7 @@ class PengajuanPklView extends GetView<PengajuanPklController> {
                             "Total Pengajuan : ",
                             style: TextStyle(
                               fontFamily: AllMaterial.fontFamily,
-                              fontWeight: AllMaterial.fontBold,
+                              fontWeight: AllMaterial.fontSemiBold,
                               fontSize: 20,
                             ),
                           ),
