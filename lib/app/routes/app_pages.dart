@@ -8,8 +8,14 @@ import '../modules/dudi/home_dudi/bindings/home_dudi_binding.dart';
 import '../modules/dudi/home_dudi/views/home_dudi_view.dart';
 import '../modules/dudi/home_page_dudi/bindings/home_page_dudi_binding.dart';
 import '../modules/dudi/home_page_dudi/views/home_page_dudi_view.dart';
+import '../modules/dudi/monitoring_siswa_dudi/bindings/monitoring_siswa_dudi_binding.dart';
+import '../modules/dudi/monitoring_siswa_dudi/views/monitoring_siswa_dudi_view.dart';
 import '../modules/dudi/notifikasi_dudi/bindings/notifikasi_dudi_binding.dart';
 import '../modules/dudi/notifikasi_dudi/views/notifikasi_dudi_view.dart';
+import '../modules/dudi/pengajuan_pkl/bindings/pengajuan_pkl_binding.dart';
+import '../modules/dudi/pengajuan_pkl/views/pengajuan_pkl_view.dart';
+import '../modules/dudi/pengaturan_jadwal_dudi/bindings/pengaturan_jadwal_dudi_binding.dart';
+import '../modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_view.dart';
 import '../modules/dudi/profile_dudi/bindings/profile_dudi_binding.dart';
 import '../modules/dudi/profile_dudi/views/profile_dudi_view.dart';
 import '../modules/guru_pembimbing/home_guru/bindings/home_guru_binding.dart';
@@ -135,6 +141,7 @@ class AppPages {
       binding: DetailNotifikasiDudiBinding(),
     ),
     GetPage(
+
       name: _Paths.LAPORAN_PKL_SISWA,
       page: () => const LaporanPklSiswaView(),
       binding: LaporanPklSiswaBinding(),
@@ -148,6 +155,20 @@ class AppPages {
       name: _Paths.PROFILE_GURU,
       page: () => const ProfileGuruView(),
       binding: ProfileGuruBinding(),
+    
+      name: _Paths.PENGAJUAN_PKL,
+      page: () => PengajuanPklView(),
+      binding: PengajuanPklBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGATURAN_JADWAL_DUDI,
+      page: () => PengaturanJadwalDudiView(),
+      binding: PengaturanJadwalDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.MONITORING_SISWA_DUDI,
+      page: () => MonitoringSiswaDudiView(),
+      binding: MonitoringSiswaDudiBinding(),
     ),
   ];
 }
