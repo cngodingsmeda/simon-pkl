@@ -26,9 +26,6 @@ class LoginController extends GetxController {
   String getDataUrl = "";
   static String tokenLogin = AllMaterial.box.read("token");
   var dataAuth = "";
-  final dataLoginDudi = AllMaterial.box.read("dataLoginDudi");
-  final dataLoginGuru = AllMaterial.box.read("dataLoginGuru");
-  final dataLoginSiswa = AllMaterial.box.read("dataLoginSiswa");
 
   Future<void> login() async {
     try {
@@ -41,11 +38,7 @@ class LoginController extends GetxController {
       );
       var data = jsonDecode(response.body);
       if (textBodyC.text.isNotEmpty && pwC.text.isNotEmpty) {
-        print(response.statusCode);
-        print("response post sebagai : ${data["auth"]}");
-        print("response post token : ${data["acces_token"]}");
         if (response.statusCode == 200 || response.statusCode == 201) {
-          print(data);
           AllMaterial.box.write("token", data["acces_token"]);
           if (data["auth"] == "pembimbing dudi") {
             getDataUrl = getDudiUrl;
@@ -118,12 +111,15 @@ class LoginController extends GetxController {
             print(response.statusCode);
             if (data["data"].toString().contains("username")) {
               AllMaterial.box.write("dataLoginDudi", data["data"]);
+              await loginPage();
               print(data["data"]);
             } else if (data["data"].toString().contains("nip")) {
               AllMaterial.box.write("dataLoginGuru", data["data"]);
+              await loginPage();
               print(data["data"]);
             } else if (data["data"].toString().contains("nis")) {
               AllMaterial.box.write("dataLoginSiswa", data["data"]);
+              await loginPage();
               print(data["data"]);
             }
           } else {
@@ -135,6 +131,21 @@ class LoginController extends GetxController {
     } catch (e) {
       print(getDataUrl);
       print("error di autoLogin : $e");
+    }
+  }
+
+  loginPage() async {
+    final dataLoginDudi = await AllMaterial.box.read("dataLoginDudi");
+    final dataLoginGuru = await AllMaterial.box.read("dataLoginGuru");
+    final dataLoginSiswa = await AllMaterial.box.read("dataLoginSiswa");
+    if (dataLoginDudi != null) {
+      Get.offNamed("/home-dudi");
+    } else if (dataLoginSiswa != null) {
+      Get.offNamed("/siswa");
+    } else if (dataLoginGuru != null) {
+      Get.offNamed("/home-guru");
+    } else {
+      Get.offNamed("/login");
     }
   }
 
@@ -166,7 +177,7 @@ class LoginController extends GetxController {
   //   if (response.statusCode == 200) {
   //     print(data["data"]);
   //     AllMaterial.box.write("siswaData", data["data"]);
-  //     isAuth.value = true;
+  //     isvalue = true;
   //   } else {
   //     throw Exception('Error min');
   //   }

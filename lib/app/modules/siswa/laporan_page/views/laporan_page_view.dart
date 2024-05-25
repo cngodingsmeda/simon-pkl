@@ -44,8 +44,10 @@ class LaporanPageView extends GetView<LaporanPageController> {
             const Text(
               "Kamu bakal dapet laporan kalo udah memilih Dudi",
               textAlign: TextAlign.center,
-              style:
-                  TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 11),
+              style: TextStyle(
+                fontFamily: AllMaterial.fontFamily,
+                fontSize: 11,
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -53,8 +55,8 @@ class LaporanPageView extends GetView<LaporanPageController> {
             ElevatedButton(
               onPressed: () => Get.toNamed(Routes.LOKASI_PKL),
               style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(AllMaterial.colorBlue)),
+                backgroundColor: WidgetStatePropertyAll(AllMaterial.colorBlue),
+              ),
               child: const Text(
                 "Mulai Temukan Dudi",
                 style: TextStyle(

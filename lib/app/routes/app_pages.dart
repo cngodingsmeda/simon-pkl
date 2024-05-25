@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/dudi/data_siswa_dudi/bindings/data_siswa_dudi_binding.dart';
 import '../modules/dudi/data_siswa_dudi/views/data_siswa_dudi_view.dart';
+import '../modules/dudi/detail_notifikasi_dudi/bindings/detail_notifikasi_dudi_binding.dart';
+import '../modules/dudi/detail_notifikasi_dudi/views/detail_notifikasi_dudi_view.dart';
 import '../modules/dudi/home_dudi/bindings/home_dudi_binding.dart';
 import '../modules/dudi/home_dudi/views/home_dudi_view.dart';
 import '../modules/dudi/home_page_dudi/bindings/home_page_dudi_binding.dart';
@@ -14,6 +16,12 @@ import '../modules/guru_pembimbing/home_guru/bindings/home_guru_binding.dart';
 import '../modules/guru_pembimbing/home_guru/views/home_guru_view.dart';
 import '../modules/guru_pembimbing/homepage_guru/bindings/homepage_guru_binding.dart';
 import '../modules/guru_pembimbing/homepage_guru/views/homepage_guru_view.dart';
+import '../modules/guru_pembimbing/laporan_pkl_siswa/bindings/laporan_pkl_siswa_binding.dart';
+import '../modules/guru_pembimbing/laporan_pkl_siswa/views/laporan_pkl_siswa_view.dart';
+import '../modules/guru_pembimbing/notifikasi_guru/bindings/notifikasi_guru_binding.dart';
+import '../modules/guru_pembimbing/notifikasi_guru/views/notifikasi_guru_view.dart';
+import '../modules/guru_pembimbing/profile_guru/bindings/profile_guru_binding.dart';
+import '../modules/guru_pembimbing/profile_guru/views/profile_guru_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/siswa/ajuan_pkl/bindings/ajuan_pkl_binding.dart';
@@ -88,12 +96,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME_GURU,
-      page: () => const HomeGuruView(),
+      page: () => HomeGuru(),
       binding: HomeGuruBinding(),
     ),
     GetPage(
       name: _Paths.HOMEPAGE_GURU,
-      page: () => const HomepageGuruView(),
+      page: () => HomepageGuruView(),
       binding: HomepageGuruBinding(),
     ),
     GetPage(
@@ -120,6 +128,26 @@ class AppPages {
       name: _Paths.PROFILE_DUDI,
       page: () => ProfileDudiView(),
       binding: ProfileDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_NOTIFIKASI_DUDI,
+      page: () => DetailNotifikasiDudiView(),
+      binding: DetailNotifikasiDudiBinding(),
+    ),
+    GetPage(
+      name: _Paths.LAPORAN_PKL_SISWA,
+      page: () => const LaporanPklSiswaView(),
+      binding: LaporanPklSiswaBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFIKASI_GURU,
+      page: () => const NotifikasiGuruView(),
+      binding: NotifikasiGuruBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_GURU,
+      page: () => const ProfileGuruView(),
+      binding: ProfileGuruBinding(),
     ),
   ];
 }
