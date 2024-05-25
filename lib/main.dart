@@ -42,27 +42,7 @@ class Home extends StatelessWidget {
             final auth = Get.find<LoginController>();
             auth.loginPage();
           });
-          return Scaffold(
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(color: AllMaterial.colorBlue),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    "Harap Tunggu Sebentar...",
-                    style: TextStyle(
-                      fontFamily: AllMaterial.fontFamily,
-                      fontSize: 18,
-                      fontWeight: AllMaterial.fontMedium,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return AllMaterial.waitPage();
         } else {
           return SnapshotView();
         }

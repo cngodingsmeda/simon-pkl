@@ -41,7 +41,6 @@ abstract class AllMaterial {
     void Function()? onConfirm,
   }) {
     return Get.defaultDialog(
-
       backgroundColor: AllMaterial.colorWhite,
       buttonColor: AllMaterial.colorBlue,
       contentPadding: const EdgeInsets.all(5),
@@ -77,6 +76,30 @@ abstract class AllMaterial {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(
         milliseconds: 1200,
+      ),
+    );
+  }
+
+  static waitPage() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(color: AllMaterial.colorBlue),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              "Harap Tunggu Sebentar...",
+              style: TextStyle(
+                fontFamily: AllMaterial.fontFamily,
+                fontSize: 18,
+                fontWeight: AllMaterial.fontMedium,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

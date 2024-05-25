@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class PengaturanJadwalDudiController extends GetxController {
-  //TODO: Implement PengaturanJadwalDudiController
 
   final count = 0.obs;
   @override

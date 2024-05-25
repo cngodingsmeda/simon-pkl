@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/bx.dart';
+import 'package:iconify_flutter/icons/bxs.dart';
 
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/homepage_guru/views/homepage_guru_view.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/laporan_pkl_siswa/views/laporan_pkl_siswa_view.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/notifikasi_guru/views/notifikasi_guru_view.dart';
@@ -18,7 +20,7 @@ class HomeGuru extends StatefulWidget {
 }
 
 class _HomeGuruState extends State<HomeGuru> {
-  var dataDudi = HomeGuruController();
+  var dataGuru = HomeGuruController();
 
   int selectedIndex = 0;
 
@@ -31,7 +33,7 @@ class _HomeGuruState extends State<HomeGuru> {
       curve: Curves.ease,
     );
     if (index == 3) {
-      // await dataDudi.fetchDataDudi();
+      await dataGuru.fetchDataGuru();
     }
   }
 
@@ -66,6 +68,8 @@ class _HomeGuruState extends State<HomeGuru> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AllMaterial.colorWhite,
+        
         selectedFontSize: 12,
         selectedItemColor: AllMaterial.colorBlue,
         selectedLabelStyle: const TextStyle(
@@ -84,7 +88,6 @@ class _HomeGuruState extends State<HomeGuru> {
         onTap: onItemTapped,
         items: [
           BottomNavigationBarItem(
-
             icon: (selectedIndex == 0)
                 ? Icon(
                     Icons.home,
@@ -99,20 +102,14 @@ class _HomeGuruState extends State<HomeGuru> {
             label: "Beranda",
           ),
           BottomNavigationBarItem(
-            // icon: Icon(Icons.data_saver_off_sharp),
             icon: (selectedIndex == 1)
-                ? Icon(
-                    MdiIcons.textBoxSearchOutline,
-                    color: (selectedIndex == 1)
-                        ? AllMaterial.colorBlue
-                        : AllMaterial.colorGrey,
-                  )
-                : Icon(
-                    MdiIcons.textBoxSearchOutline,
+                ? Iconify(Bxs.pie_chart_alt, color: AllMaterial.colorBlue)
+                : const Iconify(
+                    Bx.pie_chart_alt,
                     color: AllMaterial.colorGrey,
                   ),
-            label: "Data Siswa",
-            tooltip: "Data Siswa",
+            label: "Laporan",
+            tooltip: "Laporan",
           ),
           BottomNavigationBarItem(
             icon: (selectedIndex == 2)
@@ -147,4 +144,3 @@ class _HomeGuruState extends State<HomeGuru> {
     );
   }
 }
-

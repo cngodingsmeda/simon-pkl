@@ -25,19 +25,18 @@ abstract class Routes {
   static const PROFILE_DUDI = _Paths.DUDI + _Paths.PROFILE_DUDI;
   static const DETAIL_NOTIFIKASI_DUDI =
       _Paths.DUDI + _Paths.DETAIL_NOTIFIKASI_DUDI;
-<<<<<<< HEAD
+
   static const LAPORAN_PKL_SISWA =
       _Paths.GURU_PEMBIMBING + _Paths.LAPORAN_PKL_SISWA;
   static const NOTIFIKASI_GURU =
       _Paths.GURU_PEMBIMBING + _Paths.NOTIFIKASI_GURU;
   static const PROFILE_GURU = _Paths.GURU_PEMBIMBING + _Paths.PROFILE_GURU;
-=======
+
   static const PENGAJUAN_PKL = _Paths.DUDI + _Paths.PENGAJUAN_PKL;
   static const PENGATURAN_JADWAL_DUDI =
       _Paths.DUDI + _Paths.PENGATURAN_JADWAL_DUDI;
   static const MONITORING_SISWA_DUDI =
       _Paths.DUDI + _Paths.MONITORING_SISWA_DUDI;
->>>>>>> 3e26d9d7010f1fa336d4d795909eebb98bbcb134
 }
 
 abstract class _Paths {
@@ -62,13 +61,13 @@ abstract class _Paths {
   static const DATA_SISWA_DUDI = '/data-siswa-dudi';
   static const PROFILE_DUDI = '/profile-dudi';
   static const DETAIL_NOTIFIKASI_DUDI = '/detail-notifikasi-dudi';
-<<<<<<< HEAD
+
   static const LAPORAN_PKL_SISWA = '/laporan-pkl-siswa';
   static const NOTIFIKASI_GURU = '/notifikasi-guru';
   static const PROFILE_GURU = '/profile-guru';
-=======
+
   static const PENGAJUAN_PKL = '/pengajuan-pkl';
   static const PENGATURAN_JADWAL_DUDI = '/pengaturan-jadwal-dudi';
   static const MONITORING_SISWA_DUDI = '/monitoring-siswa-dudi';
->>>>>>> 3e26d9d7010f1fa336d4d795909eebb98bbcb134
+
 }

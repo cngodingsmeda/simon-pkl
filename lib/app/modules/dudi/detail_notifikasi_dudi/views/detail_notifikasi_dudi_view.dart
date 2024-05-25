@@ -10,7 +10,9 @@ class DetailNotifikasiDudiView extends GetView<DetailNotifikasiDudiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AllMaterial.colorWhite,
       appBar: AppBar(
+        backgroundColor: AllMaterial.colorWhite,
         title: Text(
           'Detail Notifikasi',
           style: TextStyle(

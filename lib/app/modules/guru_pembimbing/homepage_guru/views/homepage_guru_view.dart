@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:simon_pkl/app/modules/dudi/home_page_dudi/views/home_page_dudi_view.dart';
+import 'package:simon_pkl/app/modules/dudi/home_page_dudi/select_navigator_dudi_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 import 'package:simon_pkl/material/material.dart';
 import 'package:string_capitalize/string_capitalize.dart';
@@ -10,6 +10,7 @@ import '../controllers/homepage_guru_controller.dart';
 
 class HomepageGuruView extends GetView<HomepageGuruController> {
   var dataGuru = AllMaterial.box.read("dataLoginGuru");
+  var jumlahSiswa = 0;
   HomepageGuruView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,7 @@ class HomepageGuruView extends GetView<HomepageGuruController> {
                           height: 30,
                           width: 70,
                           child: Text(
-                            '0',
+                            '$jumlahSiswa',
                             style: TextStyle(
                               fontWeight: AllMaterial.fontBold,
                               fontFamily: AllMaterial.fontFamily,
@@ -138,7 +139,7 @@ class HomepageGuruView extends GetView<HomepageGuruController> {
                     ),
                   ),
                 ),
-                SelectNavigatorDudiWigdet(
+                SelectNavigatorDudiWidget(
                   icon: Icon(
                     Icons.monitor,
                     size: 80,
@@ -146,6 +147,7 @@ class HomepageGuruView extends GetView<HomepageGuruController> {
                   ),
                   nama: "Monitoring Siswa",
                   onTap: () => print("Monitoring Siswa"),
+                  jumlahSiswa: jumlahSiswa,
                 ),
               ],
             ),

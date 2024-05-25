@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class ProfileGuruController extends GetxController {
-  //TODO: Implement ProfileGuruController
 
   final count = 0.obs;
   @override
