@@ -49,9 +49,7 @@ void main() async {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircularProgressIndicator(color: AllMaterial.colorBlue),
-                        SizedBox(
-                          height: 15,
-                        ),
+                        SizedBox(height: 15),
                         Text(
                           "Harap Tunggu Sebentar...",
                           style: TextStyle(

@@ -72,28 +72,28 @@ class NotifikasiPageView extends GetView<NotifikasiPageController> {
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                  childCount: notif,
-                  (context, index) => (notif == 0)
-                      ? const Center(
-                          child: Text(
-                            "Belum ada data nih...\nKamu bakal dapet notifikasi disini",
-                            textAlign: TextAlign.center,
-                            style:
-                                TextStyle(fontFamily: AllMaterial.fontFamily),
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: NotifikasiItem(
-                            contextTitle: "Kabar baik untukmu!",
-                            subTitle:
-                                "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
-                            contextImage: "assets/logo/accept.png",
-                            onTapFunc: () {
-                              // Get.toNamed(RoutesName.settingsPage);
-                            },
-                          ),
-                        )),
+                childCount: notif,
+                (context, index) => (notif == 0)
+                    ? const Center(
+                        child: Text(
+                          "Belum ada data nih...\nKamu bakal dapet notifikasi disini",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontFamily: AllMaterial.fontFamily),
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: NotifikasiItem(
+                          contextTitle: "Kabar baik untukmu!",
+                          subTitle:
+                              "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
+                          contextImage: "assets/logo/accept.png",
+                          onTapFunc: () {
+                            // Get.toNamed(RoutesName.settingsPage);
+                          },
+                        ),
+                      ),
+              ),
             ),
           ],
         ),
