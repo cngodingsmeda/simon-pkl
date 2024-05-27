@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/app/modules/dudi/monitoring_siswa_dudi/monitoring_siswa_widget.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/monitoring_siswa_dudi_controller.dart';
 
 // ignore: must_be_immutable
 class MonitoringSiswaDudiView extends GetView<MonitoringSiswaDudiController> {
   final RxBool _folded = true.obs;
-  int SiswaDibimbing = 2;
+  int SiswaDibimbing = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class MonitoringSiswaDudiView extends GetView<MonitoringSiswaDudiController> {
                             Container(
                               // margin: EdgeInsets.symmetric(vertical: 10),
                               child: Icon(
-                                Icons.person,
+                                Icons.monitor,
                                 size: 235,
                                 color: AllMaterial.colorWhite.withOpacity(.2),
                               ),
@@ -240,13 +242,12 @@ class MonitoringSiswaDudiView extends GetView<MonitoringSiswaDudiController> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               childCount: SiswaDibimbing,
-              (context, index) => Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  color: Colors.red,
-                  width: 100,
-                  height: 100,
-                ),
+              (context, index) => MonitoringSiswaWidget(
+                nama: 'Arya Dwi Nitinegara',
+                kelas: 'XII RPL 2',
+                instansi: 'Bayan Tech',
+                jamMasuk: DateFormat.Hms().format(DateTime.now()),
+                jamPulang: DateFormat.Hms().format(DateTime.now()),
               ),
             ),
           ),
