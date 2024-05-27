@@ -13,7 +13,7 @@ void main() async {
   await GetStorage.init();
   await initializeDateFormatting();
 
-  Get.put(LoginController()); // Ensure LoginController is put here only once
+  await Get.put(LoginController());
 
   runApp(MyApp());
 }
@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           SchedulerBinding.instance.addPostFrameCallback((_) {
-            final auth = Get.find<LoginController>();
+            final auth = Get.put(LoginController());
             auth.loginPage();
           });
           return AllMaterial.waitPage();

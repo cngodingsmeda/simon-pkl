@@ -27,7 +27,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
               clipper: ClipPathClass(),
               child: Container(
                 height: 300,
-                width: Get.width,
+                // width: Get.width,
                 color: AllMaterial.colorBlue,
                 child: SafeArea(
                   child: Padding(
