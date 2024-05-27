@@ -54,7 +54,7 @@ class BerandaPageView extends GetView<BerandaPageController> {
                   icon: const Icon(Icons.add_outlined),
                   color: Colors.white,
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
+                    backgroundColor: MaterialStatePropertyAll(
                       AllMaterial.colorBlue,
                     ),
                   ),
@@ -121,7 +121,7 @@ class BerandaPageView extends GetView<BerandaPageController> {
                               icon: const Icon(Icons.history),
                               color: AllMaterial.colorBlue,
                               style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(
+                                backgroundColor: MaterialStatePropertyAll(
                                   AllMaterial.colorWhite,
                                 ),
                               ),

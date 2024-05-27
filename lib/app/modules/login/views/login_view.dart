@@ -118,10 +118,10 @@ class LoginView extends GetView<LoginController> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  fixedSize: WidgetStatePropertyAll(
+                  fixedSize: MaterialStatePropertyAll(
                     Size(Get.width, 50),
                   ),
-                  backgroundColor: WidgetStatePropertyAll(
+                  backgroundColor: MaterialStatePropertyAll(
                     AllMaterial.colorBlue,
                   ),
                 ),
