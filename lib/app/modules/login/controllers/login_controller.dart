@@ -42,6 +42,7 @@ class LoginController extends GetxController {
           AllMaterial.box.write("token", data["acces_token"]);
           if (data["auth"] == "pembimbing dudi") {
             getDataUrl = getDudiUrl;
+            print("sebagai dudi");
             AllMaterial.box.write("authentikasi", data["auth"]);
             dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
@@ -51,6 +52,7 @@ class LoginController extends GetxController {
             print("apakah auth sebagai dudi? : $isAuth");
             return data;
           } else if (data["auth"] == "guru pembimbing") {
+            print("sebagai guru");
             getDataUrl = getGuruUrl;
             isAuth.value = true;
             isGuru.value = true;
@@ -138,11 +140,11 @@ class LoginController extends GetxController {
     final dataLoginDudi = await AllMaterial.box.read("dataLoginDudi");
     final dataLoginGuru = await AllMaterial.box.read("dataLoginGuru");
     final dataLoginSiswa = await AllMaterial.box.read("dataLoginSiswa");
-    if (dataLoginDudi != null || dataLoginDudi != "") {
+    if (dataLoginDudi != null && dataLoginDudi != "") {
       return Get.offNamed("/home-dudi");
-    } else if (dataLoginSiswa != null || dataLoginSiswa != "") {
+    } else if (dataLoginSiswa != null && dataLoginSiswa != "") {
       return Get.offNamed("/siswa");
-    } else if (dataLoginGuru != null || dataLoginGuru != "") {
+    } else if (dataLoginGuru != null && dataLoginGuru != "") {
       return Get.offNamed("/home-guru");
     } else {
       return Get.offNamed("/login");

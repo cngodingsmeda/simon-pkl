@@ -92,131 +92,131 @@ class ProfileDudiView extends GetView<ProfileDudiController> {
               ),
             ],
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 30,
-                horizontal: 15,
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: AllMaterial.colorGrey,
-                          border: Border.all(
-                              width: 4, color: AllMaterial.colorBlue),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 2,
-                              offset: Offset(2, 3),
-                            ),
-                          ],
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(50)),
-                          image: const DecorationImage(
-                            image: AssetImage("assets/logo/foto-profile.png"),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              '${dataDudi["nama"]}'.capitalizeEach(),
-                              // "afwfw",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: AllMaterial.fontFamily,
-                                fontWeight: AllMaterial.fontBold,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            'Instansi : ${dataDudi["dudi"]["nama_instansi_perusahaan"]}'
-                                .capitalizeEach(),
-                            // "afwa",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: AllMaterial.fontFamily,
-                              fontWeight: AllMaterial.fontSemiBold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  ProfileItemWidget(
-                    title: "Username",
-                    subTitle: "${dataDudi["username"]}",
-                    // subTitle: "{dataSiswa[jurusan][nama]}",
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  ProfileItemWidget(
-                    title: "Agama",
-                    subTitle: "${dataDudi["agama"]}",
-                    // subTitle: "{dataSiswa[kelas][nama]}",
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  ProfileItemWidget(
-                    title: "Alamat",
-                    subTitle:
-                        "${dataDudi["alamat"]["detail_tempat"]}, ${dataDudi["alamat"]["desa"]}, ${dataDudi["alamat"]["kecamatan"]}, ${dataDudi["alamat"]["kabupaten"]}, ${dataDudi["alamat"]["provinsi"]}, ${dataDudi["alamat"]["negara"]}",
-                    // "{dataSiswa[alamat][kecamatan]}, {dataSiswa[alamat][negara]}",
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  ProfileItemWidget(
-                      title: "Jenis Kelamin",
-                      subTitle:
-                          // "${dataDudi["jenis_kelamin"].toString().contains('laki') ? 'Laki-Laki' : dataDudi["jenis_kelamin"]}",
-                          "${dataDudi["jenis_kelamin"]}"
-                      // "{dataSiswa[jenis_kelamin",
-                      ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  ProfileItemWidget(
-                    title: "No Telepon",
-                    subTitle: "${dataDudi["no_telepon"]}",
-                    // subTitle: "af",
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  // ProfileItemWidget(
-                  //   title: "Bidang",
-                  //   subTitle: "${dataDudi["dudi"]["bidang"]}",
-                  //   // subTitle: "af",
-                  // ),
-                  // const Divider(
-                  //   height: 2,
-                  // ),
-                ],
-              ),
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: Padding(
+          //     padding: const EdgeInsets.symmetric(
+          //       vertical: 30,
+          //       horizontal: 15,
+          //     ),
+          //     child: Column(
+          //       children: [
+          //         Row(
+          //           children: [
+          //             Container(
+          //               width: 80,
+          //               height: 80,
+          //               decoration: BoxDecoration(
+          //                 color: AllMaterial.colorGrey,
+          //                 border: Border.all(
+          //                     width: 4, color: AllMaterial.colorBlue),
+          //                 boxShadow: const [
+          //                   BoxShadow(
+          //                     color: Colors.black12,
+          //                     blurRadius: 2,
+          //                     offset: Offset(2, 3),
+          //                   ),
+          //                 ],
+          //                 borderRadius:
+          //                     const BorderRadius.all(Radius.circular(50)),
+          //                 image: const DecorationImage(
+          //                   image: AssetImage("assets/logo/foto-profile.png"),
+          //                   fit: BoxFit.cover,
+          //                 ),
+          //               ),
+          //             ),
+          //             const SizedBox(width: 20),
+          //             Column(
+          //               crossAxisAlignment: CrossAxisAlignment.start,
+          //               children: [
+          //                 FittedBox(
+          //                   fit: BoxFit.scaleDown,
+          //                   child: Text(
+          //                     overflow: TextOverflow.ellipsis,
+          //                     maxLines: 1,
+          //                     '${dataDudi["nama"]}'.capitalizeEach(),
+          //                     // "afwfw",
+          //                     style: TextStyle(
+          //                       fontSize: 15,
+          //                       fontFamily: AllMaterial.fontFamily,
+          //                       fontWeight: AllMaterial.fontBold,
+          //                     ),
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   'Instansi : ${dataDudi["dudi"]["nama_instansi_perusahaan"]}'
+          //                       .capitalizeEach(),
+          //                   // "afwa",
+          //                   style: TextStyle(
+          //                     fontSize: 12,
+          //                     fontFamily: AllMaterial.fontFamily,
+          //                     fontWeight: AllMaterial.fontSemiBold,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ],
+          //         ),
+          //         const SizedBox(
+          //           height: 20,
+          //         ),
+          //         const Divider(
+          //           height: 2,
+          //         ),
+          //         ProfileItemWidget(
+          //           title: "Username",
+          //           subTitle: "${dataDudi["username"]}",
+          //           // subTitle: "{dataSiswa[jurusan][nama]}",
+          //         ),
+          //         const Divider(
+          //           height: 2,
+          //         ),
+          //         ProfileItemWidget(
+          //           title: "Agama",
+          //           subTitle: "${dataDudi["agama"]}",
+          //           // subTitle: "{dataSiswa[kelas][nama]}",
+          //         ),
+          //         const Divider(
+          //           height: 2,
+          //         ),
+          //         ProfileItemWidget(
+          //           title: "Alamat",
+          //           subTitle:
+          //               "${dataDudi["alamat"]["detail_tempat"]}, ${dataDudi["alamat"]["desa"]}, ${dataDudi["alamat"]["kecamatan"]}, ${dataDudi["alamat"]["kabupaten"]}, ${dataDudi["alamat"]["provinsi"]}, ${dataDudi["alamat"]["negara"]}",
+          //           // "{dataSiswa[alamat][kecamatan]}, {dataSiswa[alamat][negara]}",
+          //         ),
+          //         const Divider(
+          //           height: 2,
+          //         ),
+          //         ProfileItemWidget(
+          //             title: "Jenis Kelamin",
+          //             subTitle:
+          //                 // "${dataDudi["jenis_kelamin"].toString().contains('laki') ? 'Laki-Laki' : dataDudi["jenis_kelamin"]}",
+          //                 "${dataDudi["jenis_kelamin"]}"
+          //             // "{dataSiswa[jenis_kelamin",
+          //             ),
+          //         const Divider(
+          //           height: 2,
+          //         ),
+          //         ProfileItemWidget(
+          //           title: "No Telepon",
+          //           subTitle: "${dataDudi["no_telepon"]}",
+          //           // subTitle: "af",
+          //         ),
+          //         const Divider(
+          //           height: 2,
+          //         ),
+          //         // ProfileItemWidget(
+          //         //   title: "Bidang",
+          //         //   subTitle: "${dataDudi["dudi"]["bidang"]}",
+          //         //   // subTitle: "af",
+          //         // ),
+          //         // const Divider(
+          //         //   height: 2,
+          //         // ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
