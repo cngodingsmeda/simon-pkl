@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/dudi/home_page_dudi/select_navigator_dudi_widget.dart';
+import 'package:simon_pkl/app/modules/dudi/monitoring_siswa_dudi/views/monitoring_siswa_dudi_view.dart';
+import 'package:simon_pkl/app/modules/dudi/pengajuan_pkl/views/pengajuan_pkl_view.dart';
+import 'package:simon_pkl/app/modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_view.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 import 'package:simon_pkl/material/material.dart';
 import 'package:string_capitalize/string_capitalize.dart';
@@ -148,7 +151,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Monitoring Siswa",
-                  onTap: () => Get.toNamed('/monitoring-siswa-dudi'),
+                  onTap: () => Get.to(MonitoringSiswaDudiView()),
                 ),
                 SelectNavigatorDudiWidget(
                   icon: Icon(
@@ -157,7 +160,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Pengaturan Jadwal",
-                  onTap: () => Get.toNamed('/pengaturan-jadwal-dudi'),
+                  onTap: () => Get.to(PengaturanJadwalDudiView()),
                 ),
                 SelectNavigatorDudiWidget(
                   icon: Icon(
@@ -166,7 +169,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Pengajuan PKL",
-                  onTap: () => Get.toNamed('/pengajuan-pkl'),
+                  onTap: () => Get.to(PengajuanPklView()),
                 ),
               ],
             ),

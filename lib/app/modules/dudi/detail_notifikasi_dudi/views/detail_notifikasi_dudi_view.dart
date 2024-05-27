@@ -67,10 +67,10 @@ class DetailNotifikasiDudiView extends GetView<DetailNotifikasiDudiController> {
         padding: const EdgeInsets.all(20.0),
         child: ElevatedButton(
           style: ButtonStyle(
-            fixedSize: WidgetStatePropertyAll(
+            fixedSize: MaterialStatePropertyAll(
               Size(Get.width, 50),
             ),
-            backgroundColor: WidgetStatePropertyAll(
+            backgroundColor: MaterialStatePropertyAll(
               AllMaterial.colorBlue,
             ),
           ),
