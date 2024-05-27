@@ -138,14 +138,14 @@ class LoginController extends GetxController {
     final dataLoginDudi = await AllMaterial.box.read("dataLoginDudi");
     final dataLoginGuru = await AllMaterial.box.read("dataLoginGuru");
     final dataLoginSiswa = await AllMaterial.box.read("dataLoginSiswa");
-    if (dataLoginDudi != null) {
-      Get.offNamed("/home-dudi");
-    } else if (dataLoginSiswa != null) {
-      Get.offNamed("/siswa");
-    } else if (dataLoginGuru != null) {
-      Get.offNamed("/home-guru");
+    if (dataLoginDudi != null || dataLoginDudi != "") {
+      return Get.offNamed("/home-dudi");
+    } else if (dataLoginSiswa != null || dataLoginSiswa != "") {
+      return Get.offNamed("/siswa");
+    } else if (dataLoginGuru != null || dataLoginGuru != "") {
+      return Get.offNamed("/home-guru");
     } else {
-      Get.offNamed("/login");
+      return Get.offNamed("/login");
     }
   }
 

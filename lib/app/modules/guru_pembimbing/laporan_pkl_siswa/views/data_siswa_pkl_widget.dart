@@ -149,28 +149,23 @@ class DataSiswaPklWidget extends StatelessWidget {
               Container(
                 width: Get.width,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      dataSiswaGuru(
-                        title: "Nama",
-                        subTitle: namaSiswa,
-                      ),
-                      dataSiswaGuru(title: "NISN", subTitle: "$nisn"),
-                      dataSiswaGuru(title: "Agama", subTitle: agama),
-                      dataSiswaGuru(
-                          title: "Jenis Kelamin", subTitle: jenisKelamin),
-                      dataSiswaGuru(title: "Jurusan", subTitle: "$jurusan"),
-                      dataSiswaGuru(
-                          title: "Instansi", subTitle: "$instansiSiswa"),
-                      dataSiswaGuru(
-                          title: "No. Telpon", subTitle: "$noTelepon"),
-                    ],
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildListTile("Nama :", "$namaSiswa"),
+                        buildListTile("NISN :", "$nisn"),
+                        buildListTile("Agama :", "$agama"),
+                        buildListTile("Jenis Kelamin :", "$jenisKelamin"),
+                        buildListTile("Jurusan :", "$jurusan"),
+                        buildListTile("Instansi :", "$instansiSiswa"),
+                        buildListTile("No. Telpon :", "$noTelepon"),
+                      ],
+                    )),
                 decoration: BoxDecoration(
                   color: AllMaterial.colorGreySec,
                   borderRadius: BorderRadius.only(
@@ -187,41 +182,30 @@ class DataSiswaPklWidget extends StatelessWidget {
   }
 }
 
-class dataSiswaGuru extends StatelessWidget {
-  const dataSiswaGuru({
-    super.key,
-    required this.title,
-    required this.subTitle,
-  });
-
-  final String title;
-  final String subTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+Widget buildListTile(String leadingText, String titleText) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 4.0),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '$title :',
+          leadingText,
           style: TextStyle(
+            color: AllMaterial.colorBlack,
+            fontWeight: AllMaterial.fontMedium,
             fontFamily: AllMaterial.fontFamily,
-            fontSize: 17,
-            fontWeight: AllMaterial.fontSemiBold,
           ),
         ),
-        FittedBox(
-          fit: BoxFit.scaleDown,
+        const SizedBox(width: 8),
+        Expanded(
           child: Text(
-            ' $subTitle',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            titleText,
+            style: const TextStyle(
               fontFamily: AllMaterial.fontFamily,
-              fontSize: 16,
             ),
           ),
         ),
       ],
-    );
-  }
+    ),
+  );
 }
