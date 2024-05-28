@@ -132,7 +132,7 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
                             child: Text(
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
-                              '${dataGuru["nama"]}'.capitalizeEach(),
+                              '${dataGuru["nama"] ?? ""}'.capitalizeEach(),
                               // "afwfw",
                               style: TextStyle(
                                 fontSize: 15,
@@ -142,8 +142,7 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
                             ),
                           ),
                           Text(
-                            'NIP : ${dataGuru["nip"]}'
-                                .capitalizeEach(),
+                            'NIP : ${dataGuru["nip"] ?? ""}'.capitalizeEach(),
                             // "afwa",
                             style: TextStyle(
                               fontSize: 12,
@@ -162,17 +161,16 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
                     height: 2,
                   ),
                   ProfileItemWidget(
-                    title: "No. Telepon",
-                    subTitle: "${dataGuru["no_telepon"]}",
-                    // subTitle: "{dataSiswa[jurusan][nama]}",
+                    title: "ID Guru Pembimbing",
+                    subTitle:
+                        "${dataGuru["alamat"]["id_guru_Pembimbing"] ?? ""}",
                   ),
                   const Divider(
                     height: 2,
                   ),
                   ProfileItemWidget(
                     title: "Agama",
-                    subTitle: "${dataGuru["agama"]}",
-                    // subTitle: "{dataSiswa[kelas][nama]}",
+                    subTitle: "${dataGuru["agama"] ?? ""}",
                   ),
                   const Divider(
                     height: 2,
@@ -180,38 +178,26 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
                   ProfileItemWidget(
                     title: "Alamat",
                     subTitle:
-                        "${dataGuru["alamat"]["detail_tempat"]}, ${dataGuru["alamat"]["desa"]}, ${dataGuru["alamat"]["kecamatan"]}, ${dataGuru["alamat"]["kabupaten"]}, ${dataGuru["alamat"]["provinsi"]}, ${dataGuru["alamat"]["negara"]}",
-                    // "{dataSiswa[alamat][kecamatan]}, {dataSiswa[alamat][negara]}",
+                        "${dataGuru["alamat"]["detail_tempat"]}, ${dataGuru["alamat"]["desa"]}, ${dataGuru["alamat"]["kecamatan"]}, ${dataGuru["alamat"]["kabupaten"]}, ${dataGuru["alamat"]["provinsi"] ?? ""}",
                   ),
                   const Divider(
                     height: 2,
                   ),
                   ProfileItemWidget(
-                      title: "Jenis Kelamin",
-                      subTitle:
-                          "${dataGuru["jenis_kelamin"].toString().contains('laki') ? 'Laki-Laki' : dataGuru["jenis_kelamin"]}",
-                          // "${dataGuru["jenis_kelamin"]}"
-                      // "{dataSiswa[jenis_kelamin",
-                      ),
+                    title: "Jenis Kelamin",
+                    subTitle:
+                        "${dataGuru["jenis_kelamin"].toString().contains('laki') ? 'Laki-Laki' : dataGuru["jenis_kelamin"] ?? ""}",
+                  ),
                   const Divider(
                     height: 2,
                   ),
                   ProfileItemWidget(
                     title: "No Telepon",
-                    subTitle: "${dataGuru["no_telepon"]}",
-                    // subTitle: "af",
+                    subTitle: "${dataGuru["no_telepon"] ?? ""}",
                   ),
                   const Divider(
                     height: 2,
                   ),
-                  // ProfileItemWidget(
-                  //   title: "Bidang",
-                  //   subTitle: "${dataGuru["dudi"]["bidang"]}",
-                  //   // subTitle: "af",
-                  // ),
-                  // const Divider(
-                  //   height: 2,
-                  // ),
                 ],
               ),
             ),

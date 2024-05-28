@@ -37,6 +37,8 @@ abstract class Routes {
       _Paths.DUDI + _Paths.PENGATURAN_JADWAL_DUDI;
   static const MONITORING_SISWA_DUDI =
       _Paths.DUDI + _Paths.MONITORING_SISWA_DUDI;
+  static const MONITORING_SISWA_PKL =
+      _Paths.GURU_PEMBIMBING + _Paths.MONITORING_SISWA_PKL;
 }
 
 abstract class _Paths {
@@ -69,5 +71,5 @@ abstract class _Paths {
   static const PENGAJUAN_PKL = '/pengajuan-pkl';
   static const PENGATURAN_JADWAL_DUDI = '/pengaturan-jadwal-dudi';
   static const MONITORING_SISWA_DUDI = '/monitoring-siswa-dudi';
-
+  static const MONITORING_SISWA_PKL = '/monitoring-siswa-pkl';
 }

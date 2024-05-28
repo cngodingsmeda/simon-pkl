@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:simon_pkl/material/material.dart';
+import 'package:string_capitalize/string_capitalize.dart';
 
 class DataSiswaPklWidget extends StatelessWidget {
   String namaSiswa;
-  int nisn;
+  String nisn;
   String agama;
   String jenisKelamin;
   String jurusan;
-  int noTelepon;
+  String noTelepon;
   String kelas;
   String instansiSiswa;
 
@@ -160,7 +161,13 @@ class DataSiswaPklWidget extends StatelessWidget {
                         buildListTile("Nama :", "$namaSiswa"),
                         buildListTile("NISN :", "$nisn"),
                         buildListTile("Agama :", "$agama"),
-                        buildListTile("Jenis Kelamin :", "$jenisKelamin"),
+                        buildListTile(
+                          "Jenis Kelamin :",
+                          (jenisKelamin.contains("laki") ||
+                                  jenisKelamin.contains("Laki"))
+                              ? "Laki-Laki"
+                              : "$jenisKelamin".capitalizeEach(),
+                        ),
                         buildListTile("Jurusan :", "$jurusan"),
                         buildListTile("Instansi :", "$instansiSiswa"),
                         buildListTile("No. Telpon :", "$noTelepon"),

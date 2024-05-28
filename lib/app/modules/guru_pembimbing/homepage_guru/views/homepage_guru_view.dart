@@ -10,7 +10,7 @@ import '../controllers/homepage_guru_controller.dart';
 
 class HomepageGuruView extends GetView<HomepageGuruController> {
   var dataGuru = AllMaterial.box.read("dataLoginGuru");
-  var jumlahSiswa = 0;
+
   HomepageGuruView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class HomepageGuruView extends GetView<HomepageGuruController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Selamat Datang, Dudi",
+                              "Selamat Datang, Guru",
                               style: TextStyle(
                                 fontFamily: AllMaterial.fontFamily,
                                 fontSize: 18,
@@ -108,7 +108,7 @@ class HomepageGuruView extends GetView<HomepageGuruController> {
                           height: 30,
                           width: 70,
                           child: Text(
-                            '$jumlahSiswa',
+                            '${controller.jumlahSiswa}',
                             style: TextStyle(
                               fontWeight: AllMaterial.fontBold,
                               fontFamily: AllMaterial.fontFamily,
@@ -146,8 +146,9 @@ class HomepageGuruView extends GetView<HomepageGuruController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Monitoring Siswa",
-                  onTap: () => print("Monitoring Siswa"),
-                  jumlahSiswa: jumlahSiswa,
+                  onTap: () => Get.toNamed("/monitoring-siswa-pkl",
+                      arguments: controller.jumlahSiswa),
+                  jumlahSiswa: controller.jumlahSiswa,
                 ),
               ],
             ),

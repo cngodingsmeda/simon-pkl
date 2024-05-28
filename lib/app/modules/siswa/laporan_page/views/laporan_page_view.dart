@@ -56,7 +56,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
               onPressed: () => Get.toNamed(Routes.LOKASI_PKL),
               style: const ButtonStyle(
                 backgroundColor:
-                    MaterialStatePropertyAll(AllMaterial.colorBlue),
+                    WidgetStatePropertyAll(AllMaterial.colorBlue),
               ),
               child: const Text(
                 "Mulai Temukan Dudi",

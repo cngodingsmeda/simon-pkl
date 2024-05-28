@@ -18,6 +18,8 @@ import '../modules/guru_pembimbing/homepage_guru/bindings/homepage_guru_binding.
 import '../modules/guru_pembimbing/homepage_guru/views/homepage_guru_view.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/bindings/laporan_pkl_siswa_binding.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/views/laporan_pkl_siswa_view.dart';
+import '../modules/guru_pembimbing/monitoring_siswa_pkl/bindings/monitoring_siswa_pkl_binding.dart';
+import '../modules/guru_pembimbing/monitoring_siswa_pkl/views/monitoring_siswa_pkl_view.dart';
 import '../modules/guru_pembimbing/notifikasi_guru/bindings/notifikasi_guru_binding.dart';
 import '../modules/guru_pembimbing/notifikasi_guru/views/notifikasi_guru_view.dart';
 import '../modules/guru_pembimbing/profile_guru/bindings/profile_guru_binding.dart';
@@ -148,6 +150,11 @@ class AppPages {
       name: _Paths.PROFILE_GURU,
       page: () => ProfileGuruView(),
       binding: ProfileGuruBinding(),
+    ),
+    GetPage(
+      name: _Paths.MONITORING_SISWA_PKL,
+      page: () => MonitoringSiswaPklView(),
+      binding: MonitoringSiswaPklBinding(),
     ),
   ];
 }

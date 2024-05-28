@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      locale: Locale("id"),
+      theme: ThemeData(fontFamily: AllMaterial.fontFamily, ),
+      locale: Locale("id", "ID"),
       showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
       home: Home(),
