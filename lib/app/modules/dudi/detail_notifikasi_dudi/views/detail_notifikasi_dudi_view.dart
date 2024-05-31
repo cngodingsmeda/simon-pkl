@@ -12,6 +12,8 @@ class DetailNotifikasiDudiView extends GetView<DetailNotifikasiDudiController> {
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
       appBar: AppBar(
+        centerTitle: true,
+        leading: Container(),
         backgroundColor: AllMaterial.colorWhite,
         title: Text(
           'Detail Notifikasi',

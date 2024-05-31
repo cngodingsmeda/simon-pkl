@@ -151,7 +151,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Monitoring Siswa",
-                  onTap: () => Get.to(MonitoringSiswaDudiView()),
+                  onTap: () => Get.to(() => MonitoringSiswaDudiView()),
                 ),
                 SelectNavigatorDudiWidget(
                   icon: Icon(
@@ -160,7 +160,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Pengaturan Jadwal",
-                  onTap: () => Get.to(PengaturanJadwalDudiView()),
+                  onTap: () => Get.to(() => PengaturanJadwalDudiView()),
                 ),
                 SelectNavigatorDudiWidget(
                   icon: Icon(
@@ -169,7 +169,7 @@ class HomePageDudiView extends GetView<HomePageDudiController> {
                     color: AllMaterial.colorWhite,
                   ),
                   nama: "Pengajuan PKL",
-                  onTap: () => Get.to(PengajuanPklView()),
+                  onTap: () => Get.to(() => PengajuanPklView()),
                 ),
               ],
             ),

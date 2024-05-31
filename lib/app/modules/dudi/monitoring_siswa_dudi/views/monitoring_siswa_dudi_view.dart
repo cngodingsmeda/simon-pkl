@@ -11,7 +11,7 @@ import '../controllers/monitoring_siswa_dudi_controller.dart';
 // ignore: must_be_immutable
 class MonitoringSiswaDudiView extends GetView<MonitoringSiswaDudiController> {
   final RxBool _folded = true.obs;
-  int SiswaDibimbing = 1;
+  int SiswaDibimbing = 10;
 
   @override
   Widget build(BuildContext context) {
