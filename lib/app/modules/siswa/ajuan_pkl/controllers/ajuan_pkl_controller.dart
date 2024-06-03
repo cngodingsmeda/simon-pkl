@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 class AjuanPklController extends GetxController {
   @override

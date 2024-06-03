@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../controllers/login_controller.dart';
@@ -17,6 +17,7 @@ class LoginView extends GetView<LoginController> {
     Get.put(LoginController());
 
     return Scaffold(
+      backgroundColor: AllMaterial.colorWhite,
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Obx(

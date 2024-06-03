@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/login/controllers/login_controller.dart';
 import 'package:simon_pkl/app/modules/siswa/profile_page/profile_item.dart';
 import 'package:simon_pkl/app/modules/siswa/profile_page/profile_item_widget.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 import '../controllers/profile_page_controller.dart';
 

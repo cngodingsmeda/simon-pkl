@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:simon_pkl/app/routes/app_pages.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 class LoginController extends GetxController {
   static const loginUrl = "http://10.0.2.2:2008/auth/auth";

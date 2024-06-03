@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 // ignore: must_be_immutable
 class DataSiswaWidget extends StatelessWidget {

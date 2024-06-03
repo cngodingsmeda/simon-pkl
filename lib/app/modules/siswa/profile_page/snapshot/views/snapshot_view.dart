@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../../../../material/material.dart';
+import '../../../../../../material/allmaterial.dart';
 
 class SnapshotView extends GetView<SnapshotController> {
   const SnapshotView({super.key});

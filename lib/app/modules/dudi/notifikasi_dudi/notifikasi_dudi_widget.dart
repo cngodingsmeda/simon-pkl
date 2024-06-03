@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable

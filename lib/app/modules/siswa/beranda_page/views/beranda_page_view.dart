@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
+import 'package:string_capitalize/string_capitalize.dart';
 
 import '../controllers/beranda_page_controller.dart';
 
 class BerandaPageView extends GetView<BerandaPageController> {
   BerandaPageView({Key? key}) : super(key: key);
-  var controller = Get.put(BerandaPageController());
+  var controllerB = Get.put(BerandaPageController());
   var dataSiswa = AllMaterial.box.read("dataLoginSiswa");
   @override
   Widget build(BuildContext context) {
@@ -19,11 +20,8 @@ class BerandaPageView extends GetView<BerandaPageController> {
 
   Widget buildBody() {
     var dudiTerpilih = AllMaterial.box.read("dudiTerpilih");
-    print(dudiTerpilih);
     var dataNisSiswa = dataSiswa["nis"];
-    // var pageIndex = 0;
     var pageIndex = AllMaterial.box.read("pageIndex") ?? 0;
-    print(pageIndex);
     switch (pageIndex) {
       case 0:
         return Scaffold(
@@ -71,7 +69,6 @@ class BerandaPageView extends GetView<BerandaPageController> {
           ),
         );
       case 1:
-        // Tampilkan tampilan untuk nilai variabel 1
         return Scaffold(
           backgroundColor: AllMaterial.colorWhite,
           body: SingleChildScrollView(
@@ -189,7 +186,7 @@ class BerandaPageView extends GetView<BerandaPageController> {
                                           ),
                                         ),
                                         subtitle: Text(
-                                          "${dudiTerpilih["nama_instansi_perusahaan"]}",
+                                          "${dudiTerpilih["nama_instansi_perusahaan"]}".capitalizeEach(),
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontFamily: AllMaterial.fontFamily,
@@ -203,7 +200,7 @@ class BerandaPageView extends GetView<BerandaPageController> {
                                           horizontal: 15,
                                         ),
                                         title: Text(
-                                          "No. Telpon :",
+                                          "No. Telpon Instansi :",
                                           style: TextStyle(
                                             fontSize: 13,
                                             fontFamily: AllMaterial.fontFamily,
@@ -231,7 +228,7 @@ class BerandaPageView extends GetView<BerandaPageController> {
                                           ),
                                         ),
                                         subtitle: Text(
-                                          "${dudiTerpilih["detail_tempat"]}, ${dudiTerpilih["desa"]}, ${dudiTerpilih["kecamatan"]}, ${dudiTerpilih["kabupaten"]}, ${dudiTerpilih["provinsi"]}",
+                                          "${dudiTerpilih["detail_tempat"]}, ${dudiTerpilih["desa"]}, ${dudiTerpilih["kecamatan"]}, ${dudiTerpilih["kabupaten"]}, ${dudiTerpilih["provinsi"]}".capitalizeEach(),
                                           style: TextStyle(
                                             fontSize: 16,
                                             fontFamily: AllMaterial.fontFamily,

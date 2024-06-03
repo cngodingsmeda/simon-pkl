@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:simon_pkl/app/modules/dudi/data_siswa_dudi/data_siswa_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 import '../controllers/data_siswa_dudi_controller.dart';
 

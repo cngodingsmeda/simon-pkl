@@ -82,6 +82,7 @@ abstract class AllMaterial {
 
   static waitPage() {
     return Scaffold(
+      backgroundColor: AllMaterial.colorWhite,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

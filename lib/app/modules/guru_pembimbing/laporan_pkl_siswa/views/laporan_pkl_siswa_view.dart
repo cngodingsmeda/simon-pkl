@@ -7,7 +7,7 @@ import 'package:iconify_flutter/icons/bx.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/homepage_guru/controllers/homepage_guru_controller.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/laporan_pkl_siswa/views/data_siswa_pkl_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 import '../controllers/laporan_pkl_siswa_controller.dart';
 

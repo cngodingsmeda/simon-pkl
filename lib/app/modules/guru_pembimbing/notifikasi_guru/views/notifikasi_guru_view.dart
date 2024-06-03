@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/dudi/notifikasi_dudi/notifikasi_dudi_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 import '../controllers/notifikasi_guru_controller.dart';
 
@@ -164,7 +164,7 @@ class NotifikasiGuruView extends GetView<NotifikasiGuruController> {
                                 "Ajuan PKL-mu diterima di PT. Telkom Indonesia",
                             contextImage: "assets/logo/accept.png",
                             onTapFunc: () {
-                              Get.toNamed('/detail-notifikasi-dudi');
+                              Get.toNamed('/detail-notifikasi-guru');
                             },
                           ),
                         ],

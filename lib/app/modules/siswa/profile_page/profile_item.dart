@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 
 // import 'package:simon_pkl/app/models/user_model.dart';
 import 'package:simon_pkl/app/modules/siswa/profile_page/controllers/profile_page_controller.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:string_capitalize/string_capitalize.dart';
 
 class ProfileItem extends GetView<ProfilePageController> {

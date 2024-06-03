@@ -9,13 +9,12 @@ import 'package:simon_pkl/app/modules/siswa/home_siswa/controllers/home_siswa_co
 import 'package:simon_pkl/app/modules/siswa/laporan_page/views/laporan_page_view.dart';
 import 'package:simon_pkl/app/modules/siswa/notifikasi_page/views/notifikasi_page_view.dart';
 import 'package:simon_pkl/app/modules/siswa/profile_page/views/profile_page_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 class HomeSiswa extends StatefulWidget {
   HomeSiswa({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomeSiswaState createState() => _HomeSiswaState();
 }
 
@@ -57,7 +56,7 @@ class _HomeSiswaState extends State<HomeSiswa> {
           BerandaPageView(),
 
           // Laporan =======>
-          const LaporanPageView(),
+          LaporanPageView(),
 
           // Notifikasi =======>
           NotifikasiPageView(),
@@ -67,6 +66,7 @@ class _HomeSiswaState extends State<HomeSiswa> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AllMaterial.colorWhite,
         selectedFontSize: 12,
         selectedItemColor: AllMaterial.colorBlue,
         selectedLabelStyle: const TextStyle(

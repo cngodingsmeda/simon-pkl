@@ -4,14 +4,19 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
 
-import '../controllers/detail_notifikasi_dudi_controller.dart';
+import '../controllers/detail_notifikasi_siswa_controller.dart';
 
-class DetailNotifikasiDudiView extends GetView<DetailNotifikasiDudiController> {
+class DetailNotifikasiSiswaView
+    extends GetView<DetailNotifikasiSiswaController> {
+  const DetailNotifikasiSiswaView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
       appBar: AppBar(
+        centerTitle: true,
+        leading: SizedBox(),
+        // leadingWidth: 0,
         backgroundColor: AllMaterial.colorWhite,
         title: Text(
           'Detail Notifikasi',

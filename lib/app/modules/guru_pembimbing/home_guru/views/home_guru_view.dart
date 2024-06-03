@@ -7,7 +7,7 @@ import 'package:simon_pkl/app/modules/guru_pembimbing/homepage_guru/views/homepa
 import 'package:simon_pkl/app/modules/guru_pembimbing/laporan_pkl_siswa/views/laporan_pkl_siswa_view.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/notifikasi_guru/views/notifikasi_guru_view.dart';
 import 'package:simon_pkl/app/modules/guru_pembimbing/profile_guru/views/profile_guru_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 import '../controllers/home_guru_controller.dart';
 

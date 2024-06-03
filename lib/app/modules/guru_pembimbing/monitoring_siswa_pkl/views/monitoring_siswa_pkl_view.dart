@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:simon_pkl/app/modules/dudi/monitoring_siswa_dudi/monitoring_siswa_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 import '../controllers/monitoring_siswa_pkl_controller.dart';
@@ -215,9 +215,10 @@ class MonitoringSiswaPklView extends GetView<MonitoringSiswaPklController> {
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
                           child: Text(
-                            '',
+                            '${DateFormat("d MMMM yyyy - H.m", "id_ID").format(DateTime.now())}',
                             style: TextStyle(
                               color: AllMaterial.colorWhite,
                             ),

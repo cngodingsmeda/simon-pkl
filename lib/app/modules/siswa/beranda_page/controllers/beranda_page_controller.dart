@@ -1,18 +1,14 @@
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/siswa/lokasi_pkl/controllers/lokasi_pkl_controller.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
-import '../../../../../material/material.dart';
+import '../../../../../material/allmaterial.dart';
 
 class BerandaPageController extends GetxController {
-  var dataPKL = LokasiPklController();
-  Future<dynamic> ambilDataDudi() async {
-    Get.toNamed(Routes.LOKASI_PKL);
+  var dataPKL = Get.put(LokasiPklController());
+
+  Future<void> ambilDataDudi() async {
     await dataPKL.fetchData();
-  }
-  @override
-  void onReady() {
-    Get.reload<LokasiPklController>();
-    super.onReady();
+    Get.toNamed(Routes.LOKASI_PKL);
   }
 
   var pageIndex = 0.obs;
@@ -20,6 +16,5 @@ class BerandaPageController extends GetxController {
   void increaseIndex() {
     pageIndex.value++;
     AllMaterial.box.write("pageIndex", pageIndex.value);
-    print(pageIndex.value);
   }
 }

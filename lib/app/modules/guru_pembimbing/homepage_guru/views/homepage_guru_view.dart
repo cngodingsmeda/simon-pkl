@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/dudi/home_page_dudi/select_navigator_dudi_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:string_capitalize/string_capitalize.dart';
 
 import '../controllers/homepage_guru_controller.dart';

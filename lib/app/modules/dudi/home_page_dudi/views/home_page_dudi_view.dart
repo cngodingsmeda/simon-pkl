@@ -8,7 +8,7 @@ import 'package:simon_pkl/app/modules/dudi/monitoring_siswa_dudi/views/monitorin
 import 'package:simon_pkl/app/modules/dudi/pengajuan_pkl/views/pengajuan_pkl_view.dart';
 import 'package:simon_pkl/app/modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_view.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:string_capitalize/string_capitalize.dart';
 
 import '../controllers/home_page_dudi_controller.dart';

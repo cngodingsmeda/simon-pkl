@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:string_capitalize/string_capitalize.dart';
 
 // ignore: must_be_immutable

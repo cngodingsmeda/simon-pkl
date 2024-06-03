@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:simon_pkl/app/modules/login/controllers/login_controller.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 class HomeDudiController extends GetxController {
   var tokenLoginDudi = AllMaterial.box.read("token");
@@ -28,8 +28,6 @@ class HomeDudiController extends GetxController {
         "Authorization": "Bearer $tokenLoginDudi",
       },
     );
-    print(response.statusCode);
-    print(response.body);
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       AllMaterial.box.write("dataDudi", data["data"]);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 // ignore: must_be_immutable
 class NotifikasiItem extends StatelessWidget {
@@ -65,9 +65,6 @@ class NotifikasiItem extends StatelessWidget {
                   fontWeight: AllMaterial.fontBold,
                   color: AllMaterial.colorBlack,
                 ),
-              ),
-              trailing: const Icon(
-                Icons.arrow_forward_ios_outlined,
               ),
             ),
           ),

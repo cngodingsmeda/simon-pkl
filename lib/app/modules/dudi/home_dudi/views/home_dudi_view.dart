@@ -6,7 +6,7 @@ import 'package:simon_pkl/app/modules/dudi/home_dudi/controllers/home_dudi_contr
 import 'package:simon_pkl/app/modules/dudi/home_page_dudi/views/home_page_dudi_view.dart';
 import 'package:simon_pkl/app/modules/dudi/notifikasi_dudi/views/notifikasi_dudi_view.dart';
 import 'package:simon_pkl/app/modules/dudi/profile_dudi/views/profile_dudi_view.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 class HomeDudi extends StatefulWidget {
   const HomeDudi({Key? key}) : super(key: key);

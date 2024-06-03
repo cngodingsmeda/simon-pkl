@@ -6,17 +6,17 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:simon_pkl/app/modules/siswa/beranda_page/controllers/beranda_page_controller.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:string_capitalize/string_capitalize.dart';
 
 import '../controllers/ajuan_pkl_controller.dart';
 
 class AjuanPklView extends GetView<AjuanPklController> {
-  // var dataDudiIndex = Get.arguments;
   final dataDudiIndex = AllMaterial.box.read("selectedData");
   AjuanPklView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print(dataDudiIndex);
     var controllerSiswa = Get.put(BerandaPageController());
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
@@ -155,7 +155,7 @@ class AjuanPklView extends GetView<AjuanPklController> {
                               horizontal: 15,
                             ),
                             title: Text(
-                              "No. Telp :",
+                              "No. Telpon Instansi :",
                               style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: AllMaterial.fontFamily,
@@ -209,7 +209,6 @@ class AjuanPklView extends GetView<AjuanPklController> {
         onTap: () {
           controllerSiswa.increaseIndex();
           Get.offAllNamed(Routes.SISWA, arguments: controllerSiswa.pageIndex.value);
-          print(dataDudiIndex);
           AllMaterial.box.write("dudiTerpilih", dataDudiIndex);
         },
         child: Container(

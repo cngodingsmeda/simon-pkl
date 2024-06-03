@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 
 import '../controllers/pengajuan_pkl_controller.dart';
-import 'package:simon_pkl/material/material.dart';
+import 'package:simon_pkl/material/allmaterial.dart';
 
 // ignore: must_be_immutable
 class PengajuanPklView extends GetView<PengajuanPklController> {

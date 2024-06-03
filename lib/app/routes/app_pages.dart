@@ -12,11 +12,15 @@ import '../modules/dudi/notifikasi_dudi/bindings/notifikasi_dudi_binding.dart';
 import '../modules/dudi/notifikasi_dudi/views/notifikasi_dudi_view.dart';
 import '../modules/dudi/profile_dudi/bindings/profile_dudi_binding.dart';
 import '../modules/dudi/profile_dudi/views/profile_dudi_view.dart';
+import '../modules/guru_pembimbing/detail_notifikasi_guru/bindings/detail_notifikasi_guru_binding.dart';
+import '../modules/guru_pembimbing/detail_notifikasi_guru/views/detail_notifikasi_guru_view.dart';
 import '../modules/guru_pembimbing/home_guru/bindings/home_guru_binding.dart';
 import '../modules/guru_pembimbing/home_guru/views/home_guru_view.dart';
 import '../modules/guru_pembimbing/homepage_guru/bindings/homepage_guru_binding.dart';
 import '../modules/guru_pembimbing/homepage_guru/views/homepage_guru_view.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/bindings/laporan_pkl_siswa_binding.dart';
+import '../modules/guru_pembimbing/laporan_pkl_siswa/detail_notifikasi_siswa/bindings/detail_notifikasi_siswa_binding.dart';
+import '../modules/guru_pembimbing/laporan_pkl_siswa/detail_notifikasi_siswa/views/detail_notifikasi_siswa_view.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/views/laporan_pkl_siswa_view.dart';
 import '../modules/guru_pembimbing/monitoring_siswa_pkl/bindings/monitoring_siswa_pkl_binding.dart';
 import '../modules/guru_pembimbing/monitoring_siswa_pkl/views/monitoring_siswa_pkl_view.dart';
@@ -39,9 +43,9 @@ import '../modules/siswa/lokasi_pkl/views/lokasi_pkl_view.dart';
 import '../modules/siswa/notifikasi_page/bindings/notifikasi_page_binding.dart';
 import '../modules/siswa/notifikasi_page/views/notifikasi_page_view.dart';
 import '../modules/siswa/profile_page/bindings/profile_page_binding.dart';
+import '../modules/siswa/profile_page/snapshot/bindings/snapshot_binding.dart';
+import '../modules/siswa/profile_page/snapshot/views/snapshot_view.dart';
 import '../modules/siswa/profile_page/views/profile_page_view.dart';
-import '../modules/snapshot/bindings/snapshot_binding.dart';
-import '../modules/snapshot/views/snapshot_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -68,7 +72,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LAPORAN_PAGE,
-      page: () => const LaporanPageView(),
+      page: () => LaporanPageView(),
       binding: LaporanPageBinding(),
     ),
     GetPage(
@@ -142,6 +146,11 @@ class AppPages {
       binding: LaporanPklSiswaBinding(),
     ),
     GetPage(
+      name: _Paths.DETAIL_NOTIFIKASI_SISWA,
+      page: () => const DetailNotifikasiSiswaView(),
+      binding: DetailNotifikasiSiswaBinding(),
+    ),
+    GetPage(
       name: _Paths.NOTIFIKASI_GURU,
       page: () => const NotifikasiGuruView(),
       binding: NotifikasiGuruBinding(),
@@ -155,6 +164,11 @@ class AppPages {
       name: _Paths.MONITORING_SISWA_PKL,
       page: () => MonitoringSiswaPklView(),
       binding: MonitoringSiswaPklBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_NOTIFIKASI_GURU,
+      page: () => const DetailNotifikasiGuruView(),
+      binding: DetailNotifikasiGuruBinding(),
     ),
   ];
 }
