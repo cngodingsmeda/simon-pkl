@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:simon_pkl/app/modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_dialog.dart';
+import 'package:simon_pkl/app/modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_widget.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 
 import 'package:simon_pkl/material/allmaterial.dart';
+
 import '../controllers/pengaturan_jadwal_dudi_controller.dart';
 
 // ignore: must_be_immutable
 class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
-  // final RxBool _folded = true.obs;
-  int TotalPengajuan = 0;
+  int totalJadwal = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -73,77 +75,6 @@ class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
                     ),
                   ),
                 ),
-                // Obx(
-                //   () => Padding(
-                //     padding: EdgeInsets.only(
-                //       top: 40,
-                //       right: 20,
-                //       left: 20,
-                //     ),
-                //     child: Align(
-                //       alignment: Alignment.centerRight,
-                //       child: AnimatedContainer(
-                //         duration: Duration(milliseconds: 400),
-                //         width: _folded.value ? 56 : Get.width,
-                //         height: 56,
-                //         decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(32),
-                //           color: AllMaterial.colorWhite,
-                //           boxShadow: kElevationToShadow[6],
-                //         ),
-                //         child: Row(
-                //           children: [
-                //             Expanded(
-                //               child: Container(
-                //                 padding: EdgeInsets.only(left: 16),
-                //                 child: !_folded.value
-                //                     ? TextField(
-                //                         decoration: InputDecoration(
-                //                           hintText: 'Cari Pengajuan PKL',
-                //                           hintStyle: TextStyle(
-                //                             fontFamily: AllMaterial.fontFamily,
-                //                             color: AllMaterial.colorBlue,
-                //                           ),
-                //                           border: InputBorder.none,
-                //                         ),
-                //                       )
-                //                     : null,
-                //               ),
-                //             ),
-                //             AnimatedContainer(
-                //               duration: Duration(microseconds: 400),
-                //               child: Material(
-                //                 type: MaterialType.transparency,
-                //                 child: InkWell(
-                //                   borderRadius: BorderRadius.only(
-                //                     topLeft:
-                //                         Radius.circular(_folded.value ? 32 : 0),
-                //                     topRight: Radius.circular(32),
-                //                     bottomLeft:
-                //                         Radius.circular(_folded.value ? 32 : 0),
-                //                     bottomRight: Radius.circular(32),
-                //                   ),
-                //                   child: Padding(
-                //                     padding: const EdgeInsets.all(16.0),
-                //                     child: Icon(
-                //                       _folded.value
-                //                           ? Icons.search
-                //                           : Icons.close,
-                //                       color: AllMaterial.colorBlue,
-                //                     ),
-                //                   ),
-                //                   onTap: () {
-                //                     _folded.value = !_folded.value;
-                //                   },
-                //                 ),
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 Padding(
                   padding: EdgeInsets.only(
                     right: context.mediaQueryPadding.right + 30,
@@ -152,7 +83,10 @@ class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
                     bottom: context.mediaQueryPadding.bottom + 20,
                   ),
                   child: InkWell(
-                    onTap: () {},
+                    borderRadius: BorderRadius.circular(100),
+                    onTap: () {
+                      Get.dialog(PengaturanJadwalDudiDialog());
+                    },
                     child: Container(
                       width: 70,
                       height: 70,
@@ -183,22 +117,32 @@ class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
               ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: Get.height * 0.22),
-                child: Text(
-                  "Belum ada jadwal",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: AllMaterial.fontFamily,
-                    fontSize: 20,
-                    color: AllMaterial.colorGrey.withOpacity(.4),
+          totalJadwal == 0
+              ? SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 60),
+                      child: Text(
+                        "Belum ada Jadwal",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: AllMaterial.fontFamily,
+                          fontSize: 20,
+                          color: AllMaterial.colorGrey.withOpacity(.4),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return PengaturanJadwalDudiWidget();
+                    },
+                    childCount: totalJadwal,
                   ),
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );
