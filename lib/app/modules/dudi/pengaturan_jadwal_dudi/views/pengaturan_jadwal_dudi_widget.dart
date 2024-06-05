@@ -4,19 +4,13 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:simon_pkl/material/allmaterial.dart';
 
 class PengaturanJadwalDudiWidget extends StatelessWidget {
-  // PengaturanJadwalDudiWidget({
-  //   required this.nama,
-  //   required this.kelas,
-  //   required this.instansi,
-  //   required this.jamMasuk,
-  //   required this.jamPulang,
-  // });
+  PengaturanJadwalDudiWidget({
+    required this.jamMasuk,
+    required this.jamPulang,
+  });
 
-  // final String nama;
-  // final dynamic kelas;
-  // final String instansi;
-  // final dynamic jamMasuk;
-  // final dynamic jamPulang;
+  final dynamic jamMasuk;
+  final dynamic jamPulang;
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +55,7 @@ class PengaturanJadwalDudiWidget extends StatelessWidget {
                             height: 23,
                             child: Center(
                               child: Text(
-                                // '$jamMasuk',
-                                'a',
+                                '$jamMasuk',
                                 style: TextStyle(
                                   color: AllMaterial.colorBlue,
                                 ),
@@ -96,8 +89,7 @@ class PengaturanJadwalDudiWidget extends StatelessWidget {
                             height: 23,
                             child: Center(
                               child: Text(
-                                // '$jamPulang',
-                                'a',
+                                '$jamPulang',
                                 style: TextStyle(
                                   color: AllMaterial.colorBlue,
                                 ),

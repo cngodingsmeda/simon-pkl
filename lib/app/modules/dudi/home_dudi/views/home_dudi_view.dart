@@ -65,6 +65,7 @@ class _HomeDudiState extends State<HomeDudi> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AllMaterial.colorWhite,
         selectedFontSize: 12,
         selectedItemColor: AllMaterial.colorBlue,
         selectedLabelStyle: const TextStyle(

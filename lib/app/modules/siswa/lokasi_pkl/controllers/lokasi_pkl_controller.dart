@@ -26,15 +26,18 @@ class LokasiPklController extends GetxController {
           "id_dudi": "$idDudi",
         },
       );
+      var data = jsonDecode(response.body);
+        AllMaterial.box.write("idAjuanPKL", data["data"]["id"]);
       if (response.statusCode == 200) {
-        print(response.body);
+        print("data dudi pkl dipilih: ${response.body}");
+        print("data id dudi pkl ${data["data"]["id"]}");
       } else {
         print(response.body);
         print(response.statusCode);
       }
     } catch (e) {
       print('Exception: $e');
-      print("error di post");
+      print("error di post ajuan pkl");
       throw Exception('Error: $e');
     }
   }

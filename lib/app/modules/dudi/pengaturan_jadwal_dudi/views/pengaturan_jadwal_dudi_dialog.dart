@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:simon_pkl/app/modules/dudi/pengaturan_jadwal_dudi/controllers/pengaturan_jadwal_dudi_controller.dart';
+import 'package:simon_pkl/app/modules/dudi/pengaturan_jadwal_dudi/views/pengaturan_jadwal_dudi_widget.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
 
 class PengaturanJadwalDudiDialog
@@ -44,6 +45,7 @@ class PengaturanJadwalDudiDialog
                 ),
                 TextField(
                   keyboardType: TextInputType.datetime,
+                  controller: controller.jamMasuk,
                   decoration: InputDecoration(
                     hintText: 'Masukkan Jadwal Jam',
                     contentPadding: EdgeInsets.all(16.0),
@@ -76,6 +78,7 @@ class PengaturanJadwalDudiDialog
                 ),
                 TextField(
                   keyboardType: TextInputType.datetime,
+                  controller: controller.jamPulang,
                   decoration: InputDecoration(
                     hintText: 'Masukkan Jadwal Jam',
                     contentPadding: EdgeInsets.all(16.0),
@@ -322,7 +325,9 @@ class PengaturanJadwalDudiDialog
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.tambahJadwal(PengaturanJadwalDudiWidget(jamMasuk: controller.jamMasuk.text, jamPulang: controller.jamPulang.text));
+            },
             child: Text('Buat'),
             style: ElevatedButton.styleFrom(
               backgroundColor: AllMaterial.colorBlue,

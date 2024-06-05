@@ -8,7 +8,9 @@ import '../controllers/detail_notifikasi_siswa_controller.dart';
 
 class DetailNotifikasiSiswaView
     extends GetView<DetailNotifikasiSiswaController> {
-  const DetailNotifikasiSiswaView({Key? key}) : super(key: key);
+  String? isiNotif;
+  String? kontenNotif;
+  DetailNotifikasiSiswaView({Key? key, this.isiNotif, this.kontenNotif}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +50,7 @@ class DetailNotifikasiSiswaView
               height: 5,
             ),
             Text(
-              'Kabar baik untukmu!',
+              isiNotif.toString(),
               style: TextStyle(
                 fontFamily: AllMaterial.fontFamily,
                 fontSize: 19,
@@ -59,7 +61,7 @@ class DetailNotifikasiSiswaView
               height: 5,
             ),
             Text(
-              'Ajuan PKL-mu diterima di PT. Telkom Indonesia, selamat bergabung!',
+              kontenNotif.toString(),
               style: TextStyle(
                 fontFamily: AllMaterial.fontFamily,
                 fontSize: 13,

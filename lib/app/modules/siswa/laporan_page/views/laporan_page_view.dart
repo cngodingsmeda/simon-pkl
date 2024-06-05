@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/siswa/beranda_page/controllers/beranda_page_controller.dart';
+import 'package:simon_pkl/app/modules/siswa/beranda_page/views/beranda_page_view.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
 
@@ -36,101 +37,96 @@ class LaporanPageView extends GetView<LaporanPageController> {
   }
 
   Widget buildBody() {
-    var pageIndex = AllMaterial.box.read("pageIndex") ?? 0;
-    switch (pageIndex) {
-      case 0:
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Belum ada Laporan",
-                style:
-                    TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 16),
+    var pageIndex = BerandaPageView.ip.value;
+    if (pageIndex == 0) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Belum ada Laporan",
+              style:
+                  TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 16),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Text(
+              "Kamu bakal dapet laporan kalo udah memilih Dudi",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: AllMaterial.fontFamily,
+                fontSize: 11,
               ),
-              const SizedBox(
-                height: 5,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                controllerB.ambilDataDudi();
+              },
+              style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(AllMaterial.colorBlue),
               ),
-              const Text(
-                "Kamu bakal dapet laporan kalo udah memilih Dudi",
-                textAlign: TextAlign.center,
+              child: const Text(
+                "Mulai Temukan Dudi",
                 style: TextStyle(
-                  fontFamily: AllMaterial.fontFamily,
-                  fontSize: 11,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  controllerB.ambilDataDudi();
-                },
-                style: const ButtonStyle(
-                  backgroundColor:
-                      WidgetStatePropertyAll(AllMaterial.colorBlue),
-                ),
-                child: const Text(
-                  "Mulai Temukan Dudi",
-                  style: TextStyle(
-                      fontFamily: AllMaterial.fontFamily,
-                      fontSize: 12,
-                      color: AllMaterial.colorWhite),
-                ),
-              ),
-            ],
-          ),
-        );
-      case 1:
-        // case jika 1
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Belum ada Laporan",
-                style:
-                    TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 16),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text(
-                "Kamu bakal dapet laporan kalo ajuan PKL-mu diterima",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: AllMaterial.fontFamily,
-                  fontSize: 11,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.toNamed(Routes.AJUAN_PKL);
-                },
-                style: const ButtonStyle(
-                  backgroundColor:
-                      WidgetStatePropertyAll(AllMaterial.colorBlue),
-                ),
-                child: const Text(
-                  "Cek Status Ajuan PKL Saya",
-                  style: TextStyle(
                     fontFamily: AllMaterial.fontFamily,
                     fontSize: 12,
-                    color: AllMaterial.colorWhite,
-                  ),
+                    color: AllMaterial.colorWhite),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (pageIndex == 1) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Belum ada Laporan",
+              style:
+                  TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 16),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Text(
+              "Kamu bakal dapet laporan kalo ajuan PKL-mu diterima",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: AllMaterial.fontFamily,
+                fontSize: 11,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed(Routes.AJUAN_PKL);
+              },
+              style: const ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(AllMaterial.colorBlue),
+              ),
+              child: const Text(
+                "Cek Status Ajuan PKL Saya",
+                style: TextStyle(
+                  fontFamily: AllMaterial.fontFamily,
+                  fontSize: 12,
+                  color: AllMaterial.colorWhite,
                 ),
               ),
-            ],
-          ),
-        );
-      case 2:
-      // case jika 2
-
-      default:
-        return SizedBox.shrink();
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Scaffold(
+        backgroundColor: AllMaterial.colorWhite,
+      );
     }
   }
 }

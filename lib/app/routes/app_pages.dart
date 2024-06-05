@@ -147,7 +147,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_NOTIFIKASI_SISWA,
-      page: () => const DetailNotifikasiSiswaView(),
+      page: () => DetailNotifikasiSiswaView(),
       binding: DetailNotifikasiSiswaBinding(),
     ),
     GetPage(

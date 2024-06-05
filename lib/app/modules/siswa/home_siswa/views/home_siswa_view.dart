@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/bx.dart';
 import 'package:iconify_flutter/icons/bxs.dart';
+import 'package:simon_pkl/api/firebase_api.dart';
 
 import 'package:simon_pkl/app/modules/siswa/beranda_page/views/beranda_page_view.dart';
 import 'package:simon_pkl/app/modules/siswa/home_siswa/controllers/home_siswa_controller.dart';
@@ -13,7 +14,6 @@ import 'package:simon_pkl/material/allmaterial.dart';
 
 class HomeSiswa extends StatefulWidget {
   HomeSiswa({Key? key}) : super(key: key);
-
   @override
   _HomeSiswaState createState() => _HomeSiswaState();
 }
@@ -41,8 +41,10 @@ class _HomeSiswaState extends State<HomeSiswa> {
     super.dispose();
   }
 
+  final FirebaseAPI fcmService = FirebaseAPI();
   @override
   Widget build(BuildContext context) {
+    fcmService.init();
     return Scaffold(
       body: PageView(
         controller: pageController,

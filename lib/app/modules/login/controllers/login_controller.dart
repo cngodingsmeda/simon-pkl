@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -69,29 +68,21 @@ class LoginController extends GetxController {
             dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
             print("apakah auth sebagai siswa? : $isAuth");
+            print(data);
             return data;
           }
         } else {
           print("error di response");
           print(response.statusCode);
-          await AllMaterial.alertSimon(
-            msg: "Kesalahan",
-            msgC: data[toBeginningOfSentenceCase("msg")],
-          );
+          
         }
       } else {
         print("error di empty");
-        await AllMaterial.alertSimon(
-          msg: "Kesalahan",
-          msgC: "NISN/Password harus diisi",
-        );
+        
       }
     } catch (e) {
       print("error : $e");
-      await AllMaterial.alertSimon(
-        msg: "Kesalahan",
-        msgC: "Periksa kembali Username/Password Anda",
-      );
+      
     }
   }
 

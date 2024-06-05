@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
 
 // ignore: must_be_immutable
@@ -6,17 +7,26 @@ class NotifikasiItem extends StatelessWidget {
   void Function()? onTapFunc;
   String contextTitle;
   String subTitle;
-  String contextImage;
+  var contextImage = "".obs;
 
-  NotifikasiItem(
-      {super.key,
-      required this.onTapFunc,
-      required this.contextTitle,
-      required this.subTitle,
-      required this.contextImage});
+  NotifikasiItem({
+    super.key,
+    required this.onTapFunc,
+    required this.contextTitle,
+    required this.subTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
+    if (contextTitle.contains("Kabar Baik Untukmu!")) {
+      contextImage.value = "assets/logo/accept.png";
+    } else if(contextTitle.contains("Menunggu proses...")) {
+      contextImage.value = "assets/logo/pending.png";
+    } else if(contextTitle.contains("Sayang sekali...")) {
+      contextImage.value = "assets/logo/decline.png";
+    } else {
+      contextImage.value = "assets/logo/habil.jpg";
+    }
     return Column(
       children: [
         InkWell(
@@ -38,15 +48,17 @@ class NotifikasiItem extends StatelessWidget {
               contentPadding: const EdgeInsets.only(
                 top: 8,
                 bottom: 8,
-                right: 10,
-                left: 10,
+                right: 15,
+                left: 15,
               ),
-              leading: Image(
-                width: 40,
-                image: AssetImage(
-                  contextImage,
+              leading: Obx(
+                () => Image(
+                  width: 40,
+                  image: AssetImage(
+                    contextImage.toString(),
+                  ),
+                  fit: BoxFit.contain,
                 ),
-                fit: BoxFit.contain,
               ),
               title: Text(
                 contextTitle,
@@ -59,6 +71,8 @@ class NotifikasiItem extends StatelessWidget {
               ),
               subtitle: Text(
                 subTitle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 15,
                   fontFamily: AllMaterial.fontFamily,

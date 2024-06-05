@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "702238685419",
+    "project_id": "simon-pkl-2a7c6",
+    "storage_bucket": "simon-pkl-2a7c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702238685419:android:0d0f8e12f7c24d7787e6ae",
+        "android_client_info": {
+          "package_name": "simon_pkl.com.simon_pkl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-4M434mpkbMRXfDimpv7C-IxCzxnya_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

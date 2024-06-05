@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:simon_pkl/app/modules/siswa/beranda_page/controllers/beranda_page_controller.dart';
+import 'package:simon_pkl/app/modules/siswa/beranda_page/views/beranda_page_view.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:string_capitalize/string_capitalize.dart';
@@ -16,8 +16,8 @@ class AjuanPklView extends GetView<AjuanPklController> {
   AjuanPklView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AjuanPklController());
     print(dataDudiIndex);
-    var controllerSiswa = Get.put(BerandaPageController());
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
       body: SingleChildScrollView(
@@ -205,32 +205,59 @@ class AjuanPklView extends GetView<AjuanPklController> {
           ],
         ),
       ),
-      bottomNavigationBar: (controllerSiswa.pageIndex.value == 0) ? GestureDetector(
-        onTap: () {
-          controllerSiswa.increaseIndex();
-          Get.offAllNamed(Routes.SISWA, arguments: controllerSiswa.pageIndex.value);
-          AllMaterial.box.write("dudiTerpilih", dataDudiIndex);
-        },
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: BoxDecoration(
-            color: AllMaterial.colorBlue,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          width: Get.width,
-          height: 50,
-          child: Center(
-            child: Text(
-              "Kembali Ke Beranda",
-              style: TextStyle(
-                fontFamily: AllMaterial.fontFamily,
-                fontWeight: AllMaterial.fontSemiBold,
-                color: AllMaterial.colorWhite,
+      bottomNavigationBar: (BerandaPageView.ip.value == 0)
+          ? GestureDetector(
+              onTap: () {
+                Get.offAllNamed(
+                  Routes.SISWA,
+                );
+                BerandaPageView.ip.value = 1;
+                AllMaterial.box.write("dudiTerpilih", dataDudiIndex);
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  color: AllMaterial.colorBlue,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                width: Get.width,
+                height: 50,
+                child: Center(
+                  child: Text(
+                    "Kembali Ke Beranda",
+                    style: TextStyle(
+                      fontFamily: AllMaterial.fontFamily,
+                      fontWeight: AllMaterial.fontSemiBold,
+                      color: AllMaterial.colorWhite,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          : GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  color: AllMaterial.colorBlue,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                width: Get.width,
+                height: 50,
+                child: Center(
+                  child: Text(
+                    "Kembali Ke Beranda",
+                    style: TextStyle(
+                      fontFamily: AllMaterial.fontFamily,
+                      fontWeight: AllMaterial.fontSemiBold,
+                      color: AllMaterial.colorWhite,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ) : SizedBox.shrink(),
     );
   }
 }

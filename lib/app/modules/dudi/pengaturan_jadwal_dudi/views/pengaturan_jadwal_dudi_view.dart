@@ -12,10 +12,10 @@ import '../controllers/pengaturan_jadwal_dudi_controller.dart';
 
 // ignore: must_be_immutable
 class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
-  int totalJadwal = 3;
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PengaturanJadwalDudiController());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -117,7 +117,7 @@ class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
               ],
             ),
           ),
-          totalJadwal == 0
+          controller.totalJadwal == 0
               ? SliverFillRemaining(
                   hasScrollBody: false,
                   child: Center(
@@ -138,9 +138,9 @@ class PengaturanJadwalDudiView extends GetView<PengaturanJadwalDudiController> {
               : SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return PengaturanJadwalDudiWidget();
+                      return PengaturanJadwalDudiWidget(jamMasuk: controller.jamMasuk.text,jamPulang: controller.jamPulang.text);
                     },
-                    childCount: totalJadwal,
+                    childCount: controller.totalJadwal.length,
                   ),
                 ),
         ],

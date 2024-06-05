@@ -1,22 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class PengaturanJadwalDudiController extends GetxController {
+  var jamMasuk = TextEditingController();
+  var jamPulang = TextEditingController();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  RxList totalJadwal = [].obs;
+
+
+  void tambahJadwal(Widget jadwal) {
+    totalJadwal.add(jadwal);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

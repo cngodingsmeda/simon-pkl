@@ -32,7 +32,7 @@ class HomeDudiController extends GetxController {
     if (response.statusCode == 200) {
       AllMaterial.box.write("dataDudi", data["data"]);
     } else {
-      AllMaterial.alertSimon(msg: "Kesalahan", msgC: "Data tidak boleh kosong");
+      // AllMaterial.alertSimon(msg: "Kesalahan", msgC: "Data tidak boleh kosong");
     }
   }
 }
