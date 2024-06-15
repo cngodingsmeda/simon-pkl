@@ -384,16 +384,18 @@ class LokasiPklView extends GetView<LokasiPklController> {
                                             middleText:
                                                 "Apakah Anda yakin ingin mengajukan PKL di ${controller.dataPrevDudi[index]["nama_instansi_perusahaan"].toString().capitalizeEach()}?",
                                             onConfirm: () {
+                                              // BerandaPageView.indexWidget.value == "proses";
                                               controller.postAjuanPKL(controller
                                                   .dataPrevDudi[index]["id"]);
                                               Get.back();
                                               Get.offAllNamed(
                                                 Routes.AJUAN_PKL,
-                                                arguments: AllMaterial.box
-                                                    .write(
-                                                        "selectedData",
-                                                        controller.dataPrevDudi[
-                                                            index]),
+                                                arguments:
+                                                    AllMaterial.box.write(
+                                                  "selectedData",
+                                                  controller
+                                                      .dataPrevDudi[index],
+                                                ),
                                               );
                                             },
                                             barrierDismissible: false,

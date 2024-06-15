@@ -66,20 +66,6 @@ abstract class AllMaterial {
     );
   }
 
-  // static alertSimon({
-  //   required String msg,
-  //   required String msgC,
-  // }) {
-  //   return Get.snackbar(
-  //     msg,
-  //     msgC,
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     duration: Duration(
-  //       milliseconds: 1200,
-  //     ),
-  //   );
-  // }
-
   static waitPage() {
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,

@@ -33,7 +33,7 @@ class LokasiPklController extends GetxController {
         print("data id dudi pkl ${data["data"]["id"]}");
       } else {
         print(response.body);
-        print(response.statusCode);
+        // print(response.statusCode);
       }
     } catch (e) {
       print('Exception: $e');

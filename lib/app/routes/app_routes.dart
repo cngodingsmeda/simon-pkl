@@ -44,6 +44,10 @@ abstract class Routes {
   static const DETAIL_NOTIFIKASI_SISWA = _Paths.GURU_PEMBIMBING +
       _Paths.LAPORAN_PKL_SISWA +
       _Paths.DETAIL_NOTIFIKASI_SISWA;
+  static const MENU_ABSEN = _Paths.SISWA + _Paths.MENU_ABSEN;
+  static const ABSEN_MASUK = _Paths.SISWA + _Paths.ABSEN_MASUK;
+  static const ABSEN_KELUAR = _Paths.SISWA + _Paths.ABSEN_KELUAR;
+  static const HISTORI_ABSEN = _Paths.SISWA + _Paths.HISTORI_ABSEN;
 }
 
 abstract class _Paths {
@@ -79,4 +83,8 @@ abstract class _Paths {
   static const MONITORING_SISWA_PKL = '/monitoring-siswa-pkl';
   static const DETAIL_NOTIFIKASI_GURU = '/detail-notifikasi-guru';
   static const DETAIL_NOTIFIKASI_SISWA = '/detail-notifikasi-siswa';
+  static const MENU_ABSEN = '/menu-absen';
+  static const ABSEN_MASUK = '/absen-masuk';
+  static const ABSEN_KELUAR = '/absen-keluar';
+  static const HISTORI_ABSEN = '/histori-absen';
 }

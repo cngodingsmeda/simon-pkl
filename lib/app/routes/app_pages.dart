@@ -21,6 +21,8 @@ import '../modules/guru_pembimbing/homepage_guru/views/homepage_guru_view.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/bindings/laporan_pkl_siswa_binding.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/detail_notifikasi_siswa/bindings/detail_notifikasi_siswa_binding.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/detail_notifikasi_siswa/views/detail_notifikasi_siswa_view.dart';
+import '../modules/siswa/histori_absen/bindings/histori_absen_binding.dart';
+import '../modules/siswa/histori_absen/views/histori_absen_view.dart';
 import '../modules/guru_pembimbing/laporan_pkl_siswa/views/laporan_pkl_siswa_view.dart';
 import '../modules/guru_pembimbing/monitoring_siswa_pkl/bindings/monitoring_siswa_pkl_binding.dart';
 import '../modules/guru_pembimbing/monitoring_siswa_pkl/views/monitoring_siswa_pkl_view.dart';
@@ -30,6 +32,10 @@ import '../modules/guru_pembimbing/profile_guru/bindings/profile_guru_binding.da
 import '../modules/guru_pembimbing/profile_guru/views/profile_guru_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/siswa/absen_keluar/bindings/absen_keluar_binding.dart';
+import '../modules/siswa/absen_keluar/views/absen_keluar_view.dart';
+import '../modules/siswa/absen_masuk/bindings/absen_masuk_binding.dart';
+import '../modules/siswa/absen_masuk/views/absen_masuk_view.dart';
 import '../modules/siswa/ajuan_pkl/bindings/ajuan_pkl_binding.dart';
 import '../modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
 import '../modules/siswa/beranda_page/bindings/beranda_page_binding.dart';
@@ -40,6 +46,8 @@ import '../modules/siswa/laporan_page/bindings/laporan_page_binding.dart';
 import '../modules/siswa/laporan_page/views/laporan_page_view.dart';
 import '../modules/siswa/lokasi_pkl/bindings/lokasi_pkl_binding.dart';
 import '../modules/siswa/lokasi_pkl/views/lokasi_pkl_view.dart';
+import '../modules/siswa/menu_absen/bindings/menu_absen_binding.dart';
+import '../modules/siswa/menu_absen/views/menu_absen_view.dart';
 import '../modules/siswa/notifikasi_page/bindings/notifikasi_page_binding.dart';
 import '../modules/siswa/notifikasi_page/views/notifikasi_page_view.dart';
 import '../modules/siswa/profile_page/bindings/profile_page_binding.dart';
@@ -144,6 +152,26 @@ class AppPages {
       name: _Paths.LAPORAN_PKL_SISWA,
       page: () => LaporanPklSiswaView(),
       binding: LaporanPklSiswaBinding(),
+    ),
+    GetPage(
+          name: _Paths.HISTORI_ABSEN,
+          page: () => const HistoriAbsenView(),
+          binding: HistoriAbsenBinding(),
+        ),
+    GetPage(
+      name: _Paths.ABSEN_KELUAR,
+      page: () => const AbsenKeluarView(),
+      binding: AbsenKeluarBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABSEN_MASUK,
+      page: () => const AbsenMasukView(),
+      binding: AbsenMasukBinding(),
+    ),
+    GetPage(
+      name: _Paths.MENU_ABSEN,
+      page: () => const MenuAbsenView(),
+      binding: MenuAbsenBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_NOTIFIKASI_SISWA,

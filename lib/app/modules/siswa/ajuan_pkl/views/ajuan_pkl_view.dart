@@ -205,13 +205,13 @@ class AjuanPklView extends GetView<AjuanPklController> {
           ],
         ),
       ),
-      bottomNavigationBar: (BerandaPageView.ip.value == 0)
+      bottomNavigationBar: (BerandaPageView.indexWidget.value == "belum_pkl")
           ? GestureDetector(
               onTap: () {
+                print("p");
                 Get.offAllNamed(
                   Routes.SISWA,
                 );
-                BerandaPageView.ip.value = 1;
                 AllMaterial.box.write("dudiTerpilih", dataDudiIndex);
               },
               child: Container(

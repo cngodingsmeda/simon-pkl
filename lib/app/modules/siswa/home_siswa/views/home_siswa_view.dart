@@ -31,7 +31,7 @@ class _HomeSiswaState extends State<HomeSiswa> {
       curve: Curves.ease,
     );
     if (index == 3) {
-      await dataSiswa.fetchDataSiswa();
+      dataSiswa.fetchDataSiswa();
     }
   }
 

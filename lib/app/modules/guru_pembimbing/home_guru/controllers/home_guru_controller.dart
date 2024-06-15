@@ -31,6 +31,7 @@ class HomeGuruController extends GetxController {
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       AllMaterial.box.write("dataGuru", data["data"]);
+      print(data["data"]);
     } else {
        AllMaterial.waitPage();
     }

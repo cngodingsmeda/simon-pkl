@@ -69,7 +69,6 @@ class ProfileDudiView extends GetView<ProfileDudiController> {
                         onConfirm: () {
                           Get.back();
                           auth.logout();
-                          Get.reloadAll();
                         },
                       ),
                       child: const Row(

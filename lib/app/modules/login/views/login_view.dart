@@ -46,9 +46,15 @@ class LoginView extends GetView<LoginController> {
               ),
               const SizedBox(height: 15),
               TextField(
+                focusNode: controller.focusNode,
                 controller: controller.textBodyC,
+                onTapOutside: (_) {
+                  controller.focusNode.unfocus();
+                },
+                cursorColor: AllMaterial.colorBlue,
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
+                
                   focusColor: AllMaterial.colorBlue,
                   hoverColor: AllMaterial.colorBlue,
                   fillColor: AllMaterial.colorBlue,
@@ -72,7 +78,11 @@ class LoginView extends GetView<LoginController> {
               ),
               SizedBox(height: 10),
               TextField(
+                onTapOutside: (_) {
+                  controller.focusNode2.unfocus();
+                },
                 controller: controller.pwC,
+                focusNode: controller.focusNode2,
                 autocorrect: false,
                 cursorColor: AllMaterial.colorBlue,
                 obscureText: (controller.isObsecure.isTrue) ? true : false,

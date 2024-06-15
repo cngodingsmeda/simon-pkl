@@ -66,7 +66,6 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
                         onConfirm: () {
                           Get.back();
                           auth.logout();
-                          Get.reloadAll();
                         },
                       ),
                       child: const Row(
@@ -91,6 +90,7 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
               ),
             ],
           ),
+          (dataGuru != null || dataGuru != "") ?
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -201,7 +201,14 @@ class ProfileGuruView extends GetView<ProfileGuruController> {
                 ],
               ),
             ),
-          ),
+          ) : SliverToBoxAdapter(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator()
+              ],
+            ),
+          )
         ],
       ),
     );

@@ -8,16 +8,17 @@ class FirebaseAPI {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   final notifications = FlutterLocalNotificationsPlugin();
-  // static RxList notifPage = [].obs;
   static var titleNotif = "".obs;
   static var bodyNotif = "".obs;
 
-  // Inisialisasi notifikasi
   Future<void> initNotifications() async {
     await _firebaseMessaging.requestPermission();
-    await analytics.logEvent(name: 'init_notifications');
-    var androidSetting =
-        const AndroidInitializationSettings('launch_background');
+    await analytics.logEvent(
+      name: 'init_notifications',
+    );
+    var androidSetting = const AndroidInitializationSettings(
+      'launch_background',
+    );
 
     var initializationSettings = InitializationSettings(
       android: androidSetting,
@@ -26,8 +27,6 @@ class FirebaseAPI {
       initializationSettings,
     );
   }
-
-
 
   Future<void> init() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
@@ -48,9 +47,6 @@ class FirebaseAPI {
       RemoteNotification notification = message.notification!;
       AndroidNotification? android = message.notification!.android;
       if (android != null) {
-        print("channel.id: ${channel.id}");
-        print(channel.description);
-        print(android.channelId);
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
@@ -65,8 +61,9 @@ class FirebaseAPI {
       }
 
       if (message.notification != null) {
-        bodyNotif.value = message.notification!.body!;
         titleNotif.value = message.notification!.title!;
+        bodyNotif.value = message.notification!.body!;
+        
       }
     });
 

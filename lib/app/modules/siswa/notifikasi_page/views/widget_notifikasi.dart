@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 // ignore: must_be_immutable
 class NotifikasiItem extends StatelessWidget {
@@ -18,14 +19,12 @@ class NotifikasiItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (contextTitle.contains("Kabar Baik Untukmu!")) {
+    if (contextTitle.contains("kabar baik untukmu!")) {
       contextImage.value = "assets/logo/accept.png";
-    } else if(contextTitle.contains("Menunggu proses...")) {
+    } else if (contextTitle.contains("enunggu proses...")) {
       contextImage.value = "assets/logo/pending.png";
-    } else if(contextTitle.contains("Sayang sekali...")) {
+    } else if (contextTitle.contains("sayang sekali...")) {
       contextImage.value = "assets/logo/decline.png";
-    } else {
-      contextImage.value = "assets/logo/habil.jpg";
     }
     return Column(
       children: [
@@ -61,7 +60,7 @@ class NotifikasiItem extends StatelessWidget {
                 ),
               ),
               title: Text(
-                contextTitle,
+                toBeginningOfSentenceCase(contextTitle),
                 style: const TextStyle(
                   fontSize: 12,
                   fontFamily: AllMaterial.fontFamily,
@@ -70,7 +69,7 @@ class NotifikasiItem extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                subTitle,
+                toBeginningOfSentenceCase(subTitle),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(

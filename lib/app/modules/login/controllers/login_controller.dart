@@ -1,11 +1,18 @@
 import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:simon_pkl/app/modules/siswa/beranda_page/controllers/beranda_page_controller.dart';
+import 'package:simon_pkl/app/modules/siswa/beranda_page/views/beranda_page_view.dart';
+// import 'package:simon_pkl/app/modules/siswa/beranda_page/views/beranda_page_view.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
 import 'package:simon_pkl/material/allmaterial.dart';
 
 class LoginController extends GetxController {
+  var focusNode = FocusNode();
+  var focusNode2 = FocusNode();
+
   static const loginUrl = "http://10.0.2.2:2008/auth/auth";
   static const getSiswaUrl = "http://10.0.2.2:2008/siswa/getSiswa";
   static const getGuruUrl =
@@ -58,7 +65,7 @@ class LoginController extends GetxController {
             AllMaterial.box.write("authentikasi", data["auth"]);
             dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
-            print("apakah auth sebagai guru? : $isAuth");
+
             return data;
           } else if (data["auth"] == "siswa") {
             getDataUrl = getSiswaUrl;
@@ -67,27 +74,80 @@ class LoginController extends GetxController {
             AllMaterial.box.write("authentikasi", data["auth"]);
             dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
-            print("apakah auth sebagai siswa? : $isAuth");
-            print(data);
             return data;
           }
         } else {
           print("error di response");
-          print(response.statusCode);
-          
+          Get.bottomSheet(BottomSheet(
+            onClosing: () {},
+            builder: (context) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: AllMaterial.colorWhite,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                width: Get.width,
+                height: 120,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Kesalahan",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: AllMaterial.fontSemiBold,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text("${data["msg"]}!"),
+                  ],
+                ),
+                padding: EdgeInsets.all(20),
+              );
+            },
+          ));
         }
       } else {
         print("error di empty");
-        
+        Get.bottomSheet(BottomSheet(
+          onClosing: () {},
+          builder: (context) {
+            return Container(
+              decoration: BoxDecoration(
+                color: AllMaterial.colorWhite,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              width: Get.width,
+              height: 120,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Kesalahan",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: AllMaterial.fontSemiBold,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text("ID/USERNAME/PASSWORD tidak boleh kosong!"),
+                ],
+              ),
+              padding: EdgeInsets.all(20),
+            );
+          },
+        ));
       }
     } catch (e) {
       print("error : $e");
-      
     }
   }
 
   Future<void> autoLogin() async {
     try {
+      cekStatusFCM();
       final tokenLogin = AllMaterial.box.read("token");
       if (tokenLogin != null) {
         if (getDataUrl.isNotEmpty) {
@@ -113,7 +173,7 @@ class LoginController extends GetxController {
             } else if (data["data"].toString().contains("nis")) {
               AllMaterial.box.write("dataLoginSiswa", data["data"]);
               await loginPage();
-              print(data["data"]);
+              print("data di autologin: ${data["data"]}");
             }
           } else {
             AllMaterial.box.erase();
@@ -128,14 +188,20 @@ class LoginController extends GetxController {
   }
 
   loginPage() async {
+    final tokenLogin = AllMaterial.box.read("token");
     final dataLoginDudi = await AllMaterial.box.read("dataLoginDudi");
     final dataLoginGuru = await AllMaterial.box.read("dataLoginGuru");
     final dataLoginSiswa = await AllMaterial.box.read("dataLoginSiswa");
-    if (dataLoginDudi != null && dataLoginDudi != "") {
+    if (dataLoginDudi != null && dataLoginDudi != "" && tokenLogin != null) {
       return Get.offNamed("/home-dudi");
-    } else if (dataLoginSiswa != null && dataLoginSiswa != "") {
+    } else if (dataLoginSiswa != null &&
+        dataLoginSiswa != "" &&
+        tokenLogin != null) {
+      await controller.findStatusSiswa();
       return Get.offNamed("/siswa");
-    } else if (dataLoginGuru != null && dataLoginGuru != "") {
+    } else if (dataLoginGuru != null &&
+        dataLoginGuru != "" &&
+        tokenLogin != null) {
       return Get.offNamed("/home-guru");
     } else {
       return Get.offNamed("/login");
@@ -145,6 +211,56 @@ class LoginController extends GetxController {
   void logout() async {
     await AllMaterial.box.erase();
     Get.offAllNamed(Routes.LOGIN);
+    var dataLoginSiswa = AllMaterial.box.read("dataLoginSiswa");
+    if (dataLoginSiswa != null) {
+      BerandaPageView.indexWidget.value = "";
+    }
+  }
+
+  Future<void> postTokenFCM() async {
+    var _tokenFCM = AllMaterial.box.read("fcmToken");
+    var _tokenLogin = AllMaterial.box.read("token");
+    var _postTokenFCMUrl = "http://10.0.2.2:2008/siswa/addTokenFCM";
+    var _response = await http.post(
+      headers: {
+        "Authorization": "Bearer $_tokenLogin",
+      },
+      body: {"tokenFCM": _tokenFCM},
+      Uri.parse(_postTokenFCMUrl),
+    );
+    print("statuscode di func: ${_response.statusCode}");
+    if (_response.statusCode == 200) {
+      print("postTokenFCM() di func dijalankan");
+    }
+  }
+
+  Future<void> getTokenFCM() async {
+    final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+    var fcmToken = await _firebaseMessaging.getToken();
+    print("getTokenFCM() dijalankan");
+    AllMaterial.box.write("fcmToken", fcmToken);
+    if (fcmToken != null || fcmToken != "") {
+      await postTokenFCM();
+      print("postTokenFCM() dijalankan");
+    }
+  }
+
+  Future<void> cekStatusFCM() async {
+    var _tokenLogin = AllMaterial.box.read("token");
+    var _cekStatusFCMUrl = "http://10.0.2.2:2008/siswa/statusTokenFCM";
+    var _response = await http.get(
+      headers: {
+        "Authorization": "Bearer $_tokenLogin",
+      },
+      Uri.parse(
+        _cekStatusFCMUrl,
+      ),
+    );
+    var data = jsonDecode(_response.body);
+    if (data["token_FCM"] != false) {
+      await getTokenFCM();
+      print("cekStatusFCM() dijalankan");
+    }
   }
 
   @override

@@ -14,31 +14,77 @@ class LaporanPageView extends GetView<LaporanPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: AllMaterial.colorWhite,
-        backgroundColor: AllMaterial.colorWhite,
-        leading: Padding(
-          padding: const EdgeInsets.all(5),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            width: 25,
-            height: 25,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/logo/logo-simon-var2.png"),
+      appBar: (BerandaPageView.indexWidget.value == "pkl")
+          ? AppBar(
+              surfaceTintColor: AllMaterial.colorWhite,
+              backgroundColor: AllMaterial.colorWhite,
+              leading: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  width: 25,
+                  height: 25,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/logo/logo-simon-var2.png"),
+                    ),
+                  ),
+                ),
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: IconButton(
+                    onPressed: () {
+                     Get.defaultDialog(
+                      backgroundColor: AllMaterial.colorWhite,
+                      title: "Laporan Tanggal",
+                      
+                      titleStyle: TextStyle(
+                        fontSize: 12,
+                        color: AllMaterial.colorBlack,
+                      ),
+                      custom: Container(
+                        
+                        child: Column(),
+                      ),
+                     );
+                    },
+                    icon: const Icon(Icons.add_outlined),
+                    color: Colors.white,
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                        AllMaterial.colorBlue,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : AppBar(
+              surfaceTintColor: AllMaterial.colorWhite,
+              backgroundColor: AllMaterial.colorWhite,
+              leading: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  width: 25,
+                  height: 25,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/logo/logo-simon-var2.png"),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
       backgroundColor: AllMaterial.colorWhite,
       body: buildBody(),
     );
   }
 
   Widget buildBody() {
-    var pageIndex = BerandaPageView.ip.value;
-    if (pageIndex == 0) {
+    if (BerandaPageView.indexWidget.value == "belum_pkl") {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +126,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
           ],
         ),
       );
-    } else if (pageIndex == 1) {
+    } else if (BerandaPageView.indexWidget.value == "proses" || BerandaPageView.indexWidget.value == "pending") {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +134,7 @@ class LaporanPageView extends GetView<LaporanPageController> {
             const Text(
               "Belum ada Laporan",
               style:
-                  TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 16),
+                  TextStyle(fontFamily: AllMaterial.fontFamily, fontSize: 16,),
             ),
             const SizedBox(
               height: 5,
@@ -123,10 +169,19 @@ class LaporanPageView extends GetView<LaporanPageController> {
           ],
         ),
       );
-    } else {
+    } else if (BerandaPageView.indexWidget.value == "pkl") {
       return Scaffold(
         backgroundColor: AllMaterial.colorWhite,
+        body: Center(
+          child: Text(
+            "Belum ada data nih...\nKlik + untuk menambah Laporan Harian",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: AllMaterial.fontFamily),
+          ),
+        ),
       );
+    } else {
+      return Scaffold();
     }
   }
 }
