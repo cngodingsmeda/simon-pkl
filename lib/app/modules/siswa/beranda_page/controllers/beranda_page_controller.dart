@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+// import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:simon_pkl/app/modules/login/controllers/login_controller.dart';
 import 'package:simon_pkl/app/modules/siswa/ajuan_pkl/views/ajuan_pkl_view.dart';
@@ -9,26 +10,27 @@ import 'package:simon_pkl/app/modules/siswa/lokasi_pkl/controllers/lokasi_pkl_co
 import 'package:simon_pkl/app/modules/siswa/menu_absen/views/menu_absen_view.dart';
 import 'package:simon_pkl/app/routes/app_pages.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:string_capitalize/string_capitalize.dart';
 import '../../../../../material/allmaterial.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class BerandaPageController extends GetxController {
   var findStatusSiswaUrl = "http://10.0.2.2:2008/siswa/findPengajuanPending";
   var cancelPKLUrl = "http://10.0.2.2:2008/siswa/cancelPengajuanPkl";
   var controllerHomeSiswa = HomeSiswaController();
+
   Future<void> cancelPKL(int idAjuanPKL) async {
     var tokenLogin = AllMaterial.box.read("token");
     try {
       var response = await http.post(
+        Uri.parse(cancelPKLUrl),
         headers: {
           "Authorization": "Bearer $tokenLogin",
         },
         body: {
           "id": "$idAjuanPKL",
         },
-        Uri.parse(
-          cancelPKLUrl,
-        ),
       );
       print("response status di cancel pkl: ${response.statusCode}");
       print("response di cancel pkl: ${response.body}");
@@ -49,9 +51,60 @@ class BerandaPageController extends GetxController {
 
   @override
   void onInit() async {
+    super.onInit();
     Get.put(LoginController());
     await findStatusSiswa();
-    super.onInit();
+    var controller = Get.put(HomeSiswaController());
+    await sketLoading();
+    controller.getLokasiSiswa();
+  }
+
+  Future<void> cekStatus() async {
+    Map<String, dynamic> dataResponse =
+        await controllerHomeSiswa.getLokasiSiswa();
+    if (!dataResponse["error"]) {
+      AllMaterial.box
+          .writeIfNull("lokasiSiswaSekarang", "${dataResponse["position"]}");
+    } else {
+      Get.bottomSheet(
+        BottomSheet(
+          onClosing: () {},
+          builder: (context) {
+            return Container(
+              decoration: BoxDecoration(
+                color: AllMaterial.colorWhite,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              width: Get.width,
+              height: 120,
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Kesalahan",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: AllMaterial.fontSemiBold,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text("${dataResponse["message"]}!"),
+                ],
+              ),
+            );
+          },
+        ),
+      );
+    }
+  }
+
+  Future<void> sketLoading() async {
+    var cekStatusRadius = HomePageDua.statusRadius.value;
+    if (cekStatusRadius == true) {
+      await cekStatus();
+    }
   }
 
   Future<void> ambilDataDudi() async {
@@ -62,10 +115,9 @@ class BerandaPageController extends GetxController {
 
   Future<void> findStatusSiswa() async {
     var _tokenLogin = AllMaterial.box.read("token");
-
     var response = await http.get(
-      headers: {"Authorization": "Bearer $_tokenLogin"},
       Uri.parse(findStatusSiswaUrl),
+      headers: {"Authorization": "Bearer $_tokenLogin"},
     );
     var data = jsonDecode(response.body);
     if (response.statusCode == 200 && data["data"] != null) {
@@ -429,155 +481,386 @@ class HomePageSatu extends StatelessWidget {
 }
 
 class HomePageDua extends StatelessWidget {
-  const HomePageDua({super.key});
+  HomePageDua({super.key});
+
+  static var statusRadius = false.obs;
 
   @override
   Widget build(BuildContext context) {
+    var radiusDariGPS = AllMaterial.box.read("insideRadius");
+    if (radiusDariGPS != null) {
+      statusRadius.value = radiusDariGPS;
+    }
+    print("statusRadius: $statusRadius");
+
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            ClipPath(
-              clipper: ClipPathClass(),
-              child: Container(
-                height: 300,
-                width: Get.width,
-                color: AllMaterial.colorBlue,
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Selamat Datang, Siswa",
-                              style: TextStyle(
-                                fontFamily: AllMaterial.fontFamily,
-                                fontSize: 18,
-                                color: AllMaterial.colorWhite,
-                                fontWeight: AllMaterial.fontBold,
-                              ),
+      body: Obx(
+        () => statusRadius.value
+            ? SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    ClipPath(
+                      clipper: ClipPathClass(),
+                      child: Container(
+                        height: 300,
+                        width: Get.width,
+                        color: AllMaterial.colorBlue,
+                        child: SafeArea(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 20,
                             ),
-                            Text(
-                              "NISN : ${dataSiswa["nis"]}".capitalizeEach(),
-                              style: TextStyle(
-                                fontFamily: AllMaterial.fontFamily,
-                                fontSize: 15,
-                                color: AllMaterial.colorWhite,
-                                fontWeight: AllMaterial.fontRegular,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Selamat Datang, Siswa!",
+                                      style: TextStyle(
+                                        fontFamily: AllMaterial.fontFamily,
+                                        fontSize: 18,
+                                        color: AllMaterial.colorWhite,
+                                        fontWeight: AllMaterial.fontBold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "NISN : ${dataSiswa["nis"]}"
+                                          .capitalizeEach(),
+                                      style: TextStyle(
+                                        fontFamily: AllMaterial.fontFamily,
+                                        fontSize: 15,
+                                        color: AllMaterial.colorWhite,
+                                        fontWeight: AllMaterial.fontRegular,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              margin: EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 90,
-              ),
-              child: Container(
-                width: 160,
-                height: 160,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    opacity: .5,
-                    image: AssetImage(
-                      "assets/logo/computer.png",
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: Get.height * 0.33,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 27),
-                  child: Container(
-                    height: 55,
-                    width: Get.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "Status Absen Hari Ini : ",
-                          style: TextStyle(
-                            fontFamily: AllMaterial.fontFamily,
-                            fontWeight: AllMaterial.fontBold,
-                            fontSize: 15,
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              Text(
-                                "Belum",
-                                style: TextStyle(
-                                  fontWeight: AllMaterial.fontSemiBold,
-                                  fontSize: 14,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 90),
+                      child: Container(
+                        width: 160,
+                        height: 160,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            opacity: .5,
+                            image: AssetImage("assets/logo/computer.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: Get.height * 0.33),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 27),
+                          child: Container(
+                            height: 55,
+                            width: Get.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: AllMaterial.colorWhite,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AllMaterial.colorGrey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 8,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  "Berada di radius absen : ",
+                                  style: TextStyle(
+                                    fontFamily: AllMaterial.fontFamily,
+                                    fontWeight: AllMaterial.fontBold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Obx(
+                                  () => statusRadius.value == false
+                                      ? Container(
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                "Tidak",
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                      AllMaterial.fontSemiBold,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(width: 5),
+                                              Icon(Icons.close,
+                                                  color: AllMaterial.colorRed),
+                                            ],
+                                          ),
+                                        )
+                                      : Container(
+                                          alignment: Alignment.center,
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                "Ya",
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                      AllMaterial.fontSemiBold,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(width: 5),
+                                              Icon(Icons.check,
+                                                  color:
+                                                      AllMaterial.colorGreen),
+                                            ],
+                                          ),
+                                        ),
+                                ),
+                                SizedBox(width: 10),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Obx(() => SelectNavigatorSiswa(
+                              active: statusRadius.value,
+                              icon: Icon(
+                                Icons.watch_later_outlined,
+                                size: 80,
+                                color: AllMaterial.colorWhite,
+                              ),
+                              nama: "Mulai Absen",
+                              onTap: () => Get.to(() => MenuAbsenView()),
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : FutureBuilder(
+                future: controller.cekStatus(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return SingleChildScrollView(
+                      child: Stack(
+                        children: [
+                          ClipPath(
+                            clipper: ClipPathClass(),
+                            child: Container(
+                              height: 300,
+                              width: Get.width,
+                              color: AllMaterial.colorBlue,
+                              child: SafeArea(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 20,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Selamat Datang, Siswa!",
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  AllMaterial.fontFamily,
+                                              fontSize: 18,
+                                              color: AllMaterial.colorWhite,
+                                              fontWeight: AllMaterial.fontBold,
+                                            ),
+                                          ),
+                                          Text(
+                                            "NISN : ${dataSiswa["nis"]}"
+                                                .capitalizeEach(),
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  AllMaterial.fontFamily,
+                                              fontSize: 15,
+                                              color: AllMaterial.colorWhite,
+                                              fontWeight:
+                                                  AllMaterial.fontRegular,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              SizedBox(width: 5),
-                              Icon(
-                                Icons.close,
-                                color: AllMaterial.colorRed,
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.centerRight,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 90),
+                            child: Container(
+                              width: 160,
+                              height: 160,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  opacity: .5,
+                                  image: AssetImage("assets/logo/computer.png"),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(height: Get.height * 0.33),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 27),
+                                child: Container(
+                                  height: 55,
+                                  width: Get.width,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: AllMaterial.colorWhite,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AllMaterial.colorGrey
+                                            .withOpacity(0.3),
+                                        spreadRadius: 1,
+                                        blurRadius: 8,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        "Berada di radius absen : ",
+                                        style: TextStyle(
+                                          fontFamily: AllMaterial.fontFamily,
+                                          fontWeight: AllMaterial.fontBold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      Obx(
+                                        () => statusRadius.value == false
+                                            ? Container(
+                                                alignment: Alignment.center,
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "Tidak",
+                                                      style: TextStyle(
+                                                        fontWeight: AllMaterial
+                                                            .fontSemiBold,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 5),
+                                                    Icon(
+                                                      Icons.close,
+                                                      color:
+                                                          AllMaterial.colorRed,
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            : Container(
+                                                alignment: Alignment.center,
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "Ya",
+                                                      style: TextStyle(
+                                                        fontWeight: AllMaterial
+                                                            .fontSemiBold,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 5),
+                                                    Icon(
+                                                      Icons.check,
+                                                      color: AllMaterial
+                                                          .colorGreen,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                      ),
+                                      SizedBox(width: 10),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SelectNavigatorSiswa(
+                                active: true,
+                                icon: Icon(
+                                  Icons.watch_later_outlined,
+                                  size: 80,
+                                  color: AllMaterial.colorWhite,
+                                ),
+                                nama: "Mulai Absen",
+                                onTap: () => Get.to(
+                                  () => MenuAbsenView(),
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AllMaterial.colorWhite,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AllMaterial.colorGrey.withOpacity(0.3),
-                          spreadRadius: 1,
-                          blurRadius: 8,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SelectNavigatorSiswa(
-                  icon: Icon(
-                    Icons.watch_later_outlined,
-                    size: 80,
-                    color: AllMaterial.colorWhite,
-                  ),
-                  nama: "Mulai Absen",
-                  onTap: () => Get.to(() => MenuAbsenView()),
-                ),
-              ],
-            ),
-          ],
-        ),
+                        ],
+                      ),
+                    );
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Skeletonizer(
+                      enabled: true,
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 300,
+                            width: Get.width,
+                            color: AllMaterial.colorBlue,
+                          ),
+                          SizedBox(height: Get.height * 0.05),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Container(
+                              height: 155,
+                              width: Get.width,
+                              color: AllMaterial.colorWhite,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return AllMaterial.waitPage();
+                  }
+                },
+              ),
       ),
     );
   }
 }
-
 
 class SelectNavigatorSiswa extends StatelessWidget {
   Icon icon;
@@ -594,47 +877,86 @@ class SelectNavigatorSiswa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var msgAbsen = AllMaterial.box.read("msgAbsen");
     return Padding(
       padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
       child: (active == false)
-          ? Ink(
-              height: 100,
-              width: Get.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 30,
-                  ),
-                  icon,
-                  SizedBox(
-                    width: 25,
-                  ),
-                  Text(
-                    nama,
-                    style: TextStyle(
-                      fontWeight: AllMaterial.fontBold,
-                      fontSize: 18,
-                      color: AllMaterial.colorWhite,
-                      fontFamily: AllMaterial.fontFamily,
+          ? InkWell(
+              borderRadius: BorderRadius.circular(25),
+              onTap: () {
+                Get.bottomSheet(BottomSheet(
+                  onClosing: () {},
+                  builder: (context) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: AllMaterial.colorWhite,
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      width: Get.width,
+                      height: 120,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Kesalahan",
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: AllMaterial.fontSemiBold,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          msgAbsen == null
+                              ? Text(
+                                  "Terjadi kesalahan dalam mengakses data, coba lagi nanti")
+                              : Text(toBeginningOfSentenceCase("${msgAbsen}!")),
+                        ],
+                      ),
+                      padding: EdgeInsets.all(20),
+                    );
+                  },
+                ));
+              },
+              child: Ink(
+                height: 100,
+                width: Get.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 30,
                     ),
-                  )
-                ],
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xff60AFF4),
-                boxShadow: [
-                  BoxShadow(
-                    color: AllMaterial.colorGreySec,
-                    spreadRadius: 0.2,
-                    blurRadius: 8,
-                    offset: Offset(0, 5),
-                  ),
-                ],
+                    icon,
+                    SizedBox(
+                      width: 25,
+                    ),
+                    Text(
+                      nama,
+                      style: TextStyle(
+                        fontWeight: AllMaterial.fontBold,
+                        fontSize: 18,
+                        color: AllMaterial.colorWhite,
+                        fontFamily: AllMaterial.fontFamily,
+                      ),
+                    )
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xff60AFF4),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AllMaterial.colorGreySec,
+                      spreadRadius: 0.2,
+                      blurRadius: 8,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
               ),
             )
           : InkWell(
+              borderRadius: BorderRadius.circular(25),
               onTap: onTap,
               child: Ink(
                 height: 100,

@@ -70,22 +70,73 @@ abstract class AllMaterial {
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(color: AllMaterial.colorBlue),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "Harap Tunggu Sebentar...",
-              style: TextStyle(
-                fontFamily: AllMaterial.fontFamily,
-                fontSize: 18,
-                fontWeight: AllMaterial.fontMedium,
-              ),
-            ),
-          ],
+        child: FutureBuilder(
+          future: Future.delayed(
+            Duration(seconds: 10),
+          ),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 75,
+                      width: 75,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/logo/pending.png"),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Kesalahan...",
+                      style: TextStyle(
+                        fontFamily: AllMaterial.fontFamily,
+                        fontSize: 25,
+                        fontWeight: AllMaterial.fontBold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Silahkan periksa koneksi internet & mulai ulang aplikasi",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: AllMaterial.fontFamily,
+                        fontSize: 18,
+                        color: AllMaterial.colorGrey,
+                        fontWeight: AllMaterial.fontMedium,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(color: AllMaterial.colorBlue),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    "Harap Tunggu Sebentar...",
+                    style: TextStyle(
+                      fontFamily: AllMaterial.fontFamily,
+                      fontSize: 18,
+                      fontWeight: AllMaterial.fontMedium,
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
     );

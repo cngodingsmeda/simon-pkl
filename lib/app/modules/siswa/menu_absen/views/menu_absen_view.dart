@@ -13,17 +13,25 @@ class MenuAbsenView extends GetView<MenuAbsenController> {
   const MenuAbsenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(MenuAbsenController());
+    controller.cekJenisAbsenMasuk();
     return Scaffold(
       backgroundColor: AllMaterial.colorWhite,
       appBar: AppBar(
         surfaceTintColor: AllMaterial.colorWhite,
         backgroundColor: AllMaterial.colorWhite,
-        title: const Text('Menu Absen'),
+        title: const Text(
+          'Menu Absen',
+          style: TextStyle(
+            color: AllMaterial.colorBlack,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Column(
         children: [
           SelectNavigatorSiswa(
+            active: controller.isAbsenMasuk.value,
             icon: Icon(
               Icons.install_desktop_outlined,
               size: 80,
@@ -35,7 +43,7 @@ class MenuAbsenView extends GetView<MenuAbsenController> {
             },
           ),
           SelectNavigatorSiswa(
-            active: false,
+            active: controller.isAbsenKeluar.value,
             icon: Icon(
               Icons.output_rounded,
               size: 80,
@@ -44,6 +52,30 @@ class MenuAbsenView extends GetView<MenuAbsenController> {
             nama: "Absen Keluar",
             onTap: () {
               Get.to(() => AbsenKeluarView());
+            },
+          ),
+          SelectNavigatorSiswa(
+            active: controller.isAbsenTelat.value,
+            icon: Icon(
+              Icons.assignment_late_outlined,
+              size: 80,
+              color: AllMaterial.colorWhite,
+            ),
+            nama: "Absen Telat",
+            onTap: () {
+              Get.to(() => HistoriAbsenView());
+            },
+          ),
+          SelectNavigatorSiswa(
+            active: controller.isAbsenDiLuarRadius.value,
+            icon: Icon(
+              Icons.location_disabled_outlined,
+              size: 80,
+              color: AllMaterial.colorWhite,
+            ),
+            nama: "Absen Di Luar Radius",
+            onTap: () {
+              Get.to(() => HistoriAbsenView());
             },
           ),
           SelectNavigatorSiswa(
@@ -59,7 +91,7 @@ class MenuAbsenView extends GetView<MenuAbsenController> {
           ),
           SizedBox(height: 25),
           Text(
-            "*Jika tombol tidak aktif, maka proses telah tuntas",
+            "*Tombol yang aktif berdasarkan status absen-mu",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
@@ -71,4 +103,3 @@ class MenuAbsenView extends GetView<MenuAbsenController> {
     );
   }
 }
-

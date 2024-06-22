@@ -12,7 +12,7 @@ import '../controllers/profile_page_controller.dart';
 class ProfilePageView extends GetView<ProfilePageController> {
   var auth = LoginController();
   var dataSiswa = AllMaterial.box.read("dataSiswa");
-
+  static var getDataSiswa = false.obs;
   ProfilePageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -155,13 +155,7 @@ class AbsenMasukView extends GetView<AbsenMasukController> {
 
                   // BUTTON
                   ElevatedButton(
-                    onPressed: () {
-                      controller.getLokasiSiswa().then((value) {
-                        controller.latitudeSiswa = value.latitude;
-                        controller.longitudeSiswa = value.longitude;
-                        print(controller.latitudeSiswa);
-                        print(controller.longitudeSiswa);
-                      });
+                    onPressed: () async {
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -181,55 +175,57 @@ class AbsenMasukView extends GetView<AbsenMasukController> {
                       ],
                     ),
                   ),
-                  Obx(
-                    () => (isButtonDisabled().value && controller.latitudeSiswa != 0)
-                        ? ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AllMaterial.colorWhite,
-                              fixedSize: Size(Get.width, 25),
-                            ),
-                            onPressed: () {
-                              print(controller.latitudeSiswa);
-                              print(controller.imageAbsen.value.path);
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.check,
-                                  color: AllMaterial.colorBlue,
-                                  size: 20,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Absen Masuk",
-                                  style: TextStyle(
-                                    color: AllMaterial.colorBlue,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AllMaterial.colorWhite,
-                              fixedSize: Size(Get.width, 25),
-                            ),
-                            onPressed: null,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 10),
-                                Text(
-                                  "Absen Masuk",
-                                  style: TextStyle(
-                                    color: AllMaterial.colorGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                  ),
+                  // TODO: KALO UDAH CEK RADIUS, ISI INI
+                  // Obx(
+                  //   () => (isButtonDisabled().value &&
+                  //           controller.latitudeSiswa != 0)
+                  //       ? ElevatedButton(
+                  //           style: ElevatedButton.styleFrom(
+                  //             backgroundColor: AllMaterial.colorWhite,
+                  //             fixedSize: Size(Get.width, 25),
+                  //           ),
+                  //           onPressed: () {
+                  //             print(controller.latitudeSiswa);
+                  //             print(controller.imageAbsen.value.path);
+                  //           },
+                  //           child: Row(
+                  //             mainAxisAlignment: MainAxisAlignment.center,
+                  //             children: [
+                  //               Icon(
+                  //                 Icons.check,
+                  //                 color: AllMaterial.colorBlue,
+                  //                 size: 20,
+                  //               ),
+                  //               SizedBox(width: 10),
+                  //               Text(
+                  //                 "Absen Masuk",
+                  //                 style: TextStyle(
+                  //                   color: AllMaterial.colorBlue,
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         )
+                  //       : ElevatedButton(
+                  //           style: ElevatedButton.styleFrom(
+                  //             backgroundColor: AllMaterial.colorWhite,
+                  //             fixedSize: Size(Get.width, 25),
+                  //           ),
+                  //           onPressed: null,
+                  //           child: Row(
+                  //             mainAxisAlignment: MainAxisAlignment.center,
+                  //             children: [
+                  //               SizedBox(width: 10),
+                  //               Text( 
+                  //                 "Absen Masuk",
+                  //                 style: TextStyle(
+                  //                   color: AllMaterial.colorGrey,
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  // ),
                 ],
               ),
             ),

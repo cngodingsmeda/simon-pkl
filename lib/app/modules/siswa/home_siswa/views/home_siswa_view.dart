@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/bx.dart';
 import 'package:iconify_flutter/icons/bxs.dart';
@@ -30,7 +31,7 @@ class _HomeSiswaState extends State<HomeSiswa> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.ease,
     );
-    if (index == 3) {
+    if (index == 3 && ProfilePageView.getDataSiswa.isFalse) {
       dataSiswa.fetchDataSiswa();
     }
   }

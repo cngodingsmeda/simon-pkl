@@ -48,6 +48,11 @@ abstract class Routes {
   static const ABSEN_MASUK = _Paths.SISWA + _Paths.ABSEN_MASUK;
   static const ABSEN_KELUAR = _Paths.SISWA + _Paths.ABSEN_KELUAR;
   static const HISTORI_ABSEN = _Paths.SISWA + _Paths.HISTORI_ABSEN;
+  static const ABSEN_DILUAR_RADIUS = _Paths.GURU_PEMBIMBING +
+      _Paths.LAPORAN_PKL_SISWA +
+      _Paths.ABSEN_DILUAR_RADIUS;
+  static const ABSEN_TELAT =
+      _Paths.GURU_PEMBIMBING + _Paths.LAPORAN_PKL_SISWA + _Paths.ABSEN_TELAT;
 }
 
 abstract class _Paths {
@@ -87,4 +92,6 @@ abstract class _Paths {
   static const ABSEN_MASUK = '/absen-masuk';
   static const ABSEN_KELUAR = '/absen-keluar';
   static const HISTORI_ABSEN = '/histori-absen';
+  static const ABSEN_DILUAR_RADIUS = '/absen-diluar-radius';
+  static const ABSEN_TELAT = '/absen-telat';
 }
