@@ -102,43 +102,44 @@ class HomeSiswaController extends GetxController {
       if (response.statusCode == 200) {
         HomePageDua.statusRadius.value = data["data"]["insideRadius"];
         cekJenisAbsenSiswa(latitude, longitude);
-      } else {
-        Get.bottomSheet(
-          BottomSheet(
-            onClosing: () {},
-            builder: (context) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: AllMaterial.colorWhite,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                width: Get.width,
-                height: 120,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Kesalahan",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: AllMaterial.fontSemiBold,
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      toBeginningOfSentenceCase(
-                        "${data["msg"]}!",
-                      ),
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(20),
-              );
-            },
-          ),
-        );
       }
+      // else {
+      //   Get.bottomSheet(
+      //     BottomSheet(
+      //       onClosing: () {},
+      //       builder: (context) {
+      //         return Container(
+      //           decoration: BoxDecoration(
+      //             color: AllMaterial.colorWhite,
+      //             borderRadius: BorderRadius.circular(25),
+      //           ),
+      //           width: Get.width,
+      //           height: 120,
+      //           child: Column(
+      //             mainAxisAlignment: MainAxisAlignment.center,
+      //             crossAxisAlignment: CrossAxisAlignment.start,
+      //             children: [
+      //               Text(
+      //                 "Kesalahan",
+      //                 style: TextStyle(
+      //                   fontSize: 17,
+      //                   fontWeight: AllMaterial.fontSemiBold,
+      //                 ),
+      //               ),
+      //               SizedBox(height: 5),
+      //               Text(
+      //                 toBeginningOfSentenceCase(
+      //                   "${data["msg"]}!",
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //           padding: EdgeInsets.all(20),
+      //         );
+      //       },
+      //     ),
+      //   );
+      // }
     } catch (e) {
       print("error di cekRadiusKoordinat: $e");
     }

@@ -158,7 +158,8 @@ class LoginController extends GetxController {
   Future<void> autoLogin() async {
     try {
       cekStatusFCM();
-      if (tokenLogin.value.isNotEmpty || AllMaterial.box.read("token") != null) {
+      if (tokenLogin.value.isNotEmpty ||
+          AllMaterial.box.read("token") != null) {
         if (getDataUrl.isNotEmpty) {
           final response = await http.get(
             Uri.parse(getDataUrl),

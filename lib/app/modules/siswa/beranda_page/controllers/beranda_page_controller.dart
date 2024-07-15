@@ -56,7 +56,9 @@ class BerandaPageController extends GetxController {
     await findStatusSiswa();
     var controller = Get.put(HomeSiswaController());
     await sketLoading();
-    controller.getLokasiSiswa();
+    if (BerandaPageView.indexWidget.value == "pkl") {
+      await controller.getLokasiSiswa();
+    }
   }
 
   Future<void> cekStatus() async {
@@ -65,39 +67,40 @@ class BerandaPageController extends GetxController {
     if (!dataResponse["error"]) {
       AllMaterial.box
           .writeIfNull("lokasiSiswaSekarang", "${dataResponse["position"]}");
-    } else {
-      Get.bottomSheet(
-        BottomSheet(
-          onClosing: () {},
-          builder: (context) {
-            return Container(
-              decoration: BoxDecoration(
-                color: AllMaterial.colorWhite,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              width: Get.width,
-              height: 120,
-              padding: EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Kesalahan",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: AllMaterial.fontSemiBold,
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Text("${dataResponse["message"]}!"),
-                ],
-              ),
-            );
-          },
-        ),
-      );
     }
+    // else if (dataResponse["error"]) {
+    //   Get.bottomSheet(
+    //     BottomSheet(
+    //       onClosing: () {},
+    //       builder: (context) {
+    //         return Container(
+    //           decoration: BoxDecoration(
+    //             color: AllMaterial.colorWhite,
+    //             borderRadius: BorderRadius.circular(25),
+    //           ),
+    //           width: Get.width,
+    //           height: 120,
+    //           padding: EdgeInsets.all(20),
+    //           child: Column(
+    //             mainAxisAlignment: MainAxisAlignment.center,
+    //             crossAxisAlignment: CrossAxisAlignment.start,
+    //             children: [
+    //               Text(
+    //                 "Kesalahan",
+    //                 style: TextStyle(
+    //                   fontSize: 17,
+    //                   fontWeight: AllMaterial.fontSemiBold,
+    //                 ),
+    //               ),
+    //               SizedBox(height: 5),
+    //               Text("${dataResponse["message"]}!"),
+    //             ],
+    //           ),
+    //         );
+    //       },
+    //     ),
+    //   );
+    // }
   }
 
   Future<void> sketLoading() async {
