@@ -30,7 +30,7 @@ class LoginController extends GetxController {
   RxBool isAuth = RxBool(false);
   RxBool isObsecure = true.obs;
   String getDataUrl = "";
-  static String tokenLogin = AllMaterial.box.read("token");
+  static var tokenLogin = "".obs;
   var dataAuth = "";
 
   Future<void> login() async {
@@ -45,7 +45,14 @@ class LoginController extends GetxController {
       var data = jsonDecode(response.body);
       if (textBodyC.text.isNotEmpty && pwC.text.isNotEmpty) {
         if (response.statusCode == 200 || response.statusCode == 201) {
-          AllMaterial.box.write("token", data["acces_token"]);
+          if (data["msg"].toString().contains("expired")) {
+            AllMaterial.box.remove("token");
+          } else {
+            AllMaterial.box.write("token", data["acces_token"]);
+            update();
+          }
+          tokenLogin.value = data["acces_token"];
+          print(data);
           if (data["auth"] == "pembimbing dudi") {
             getDataUrl = getDudiUrl;
             print("sebagai dudi");
@@ -54,7 +61,6 @@ class LoginController extends GetxController {
             await autoLogin();
             isAuth.value = true;
             isDudi.value = true;
-            Get.reset();
             print("apakah auth sebagai dudi? : $isAuth");
             return data;
           } else if (data["auth"] == "guru pembimbing") {
@@ -71,6 +77,7 @@ class LoginController extends GetxController {
             getDataUrl = getSiswaUrl;
             isAuth.value = true;
             isSiswa.value = true;
+            AllMaterial.box.remove("authentikasi");
             AllMaterial.box.write("authentikasi", data["auth"]);
             dataAuth = AllMaterial.box.read("authentikasi");
             await autoLogin();
@@ -78,35 +85,38 @@ class LoginController extends GetxController {
           }
         } else {
           print("error di response");
-          Get.bottomSheet(BottomSheet(
-            onClosing: () {},
-            builder: (context) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: AllMaterial.colorWhite,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                width: Get.width,
-                height: 120,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Kesalahan",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: AllMaterial.fontSemiBold,
+          Get.bottomSheet(
+            BottomSheet(
+              onClosing: () {},
+              builder: (context) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: AllMaterial.colorWhite,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  width: Get.width,
+                  height: 120,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Kesalahan",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: AllMaterial.fontSemiBold,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 5),
-                    Text("${data["msg"]}!"),
-                  ],
-                ),
-                padding: EdgeInsets.all(20),
-              );
-            },
-          ));
+                      SizedBox(height: 5),
+                      Text("${data["msg"]}!"),
+                    ],
+                  ),
+                  padding: EdgeInsets.all(20),
+                );
+              },
+            ),
+          );
+          update();
         }
       } else {
         print("error di empty");
@@ -148,13 +158,12 @@ class LoginController extends GetxController {
   Future<void> autoLogin() async {
     try {
       cekStatusFCM();
-      final tokenLogin = AllMaterial.box.read("token");
-      if (tokenLogin != null) {
+      if (tokenLogin.value.isNotEmpty || AllMaterial.box.read("token") != null) {
         if (getDataUrl.isNotEmpty) {
           final response = await http.get(
             Uri.parse(getDataUrl),
             headers: {
-              "Authorization": "Bearer $tokenLogin",
+              "Authorization": "Bearer ${tokenLogin.value}",
             },
           );
           if (response.statusCode == 200) {
@@ -188,20 +197,19 @@ class LoginController extends GetxController {
   }
 
   loginPage() async {
-    final tokenLogin = AllMaterial.box.read("token");
     final dataLoginDudi = await AllMaterial.box.read("dataLoginDudi");
     final dataLoginGuru = await AllMaterial.box.read("dataLoginGuru");
     final dataLoginSiswa = await AllMaterial.box.read("dataLoginSiswa");
-    if (dataLoginDudi != null && dataLoginDudi != "" && tokenLogin != null) {
+    if (dataLoginDudi != null && dataLoginDudi != "" && tokenLogin.isNotEmpty) {
       return Get.offNamed("/home-dudi");
     } else if (dataLoginSiswa != null &&
         dataLoginSiswa != "" &&
-        tokenLogin != null) {
+        tokenLogin.isNotEmpty) {
       await controller.findStatusSiswa();
       return Get.offNamed("/siswa");
     } else if (dataLoginGuru != null &&
         dataLoginGuru != "" &&
-        tokenLogin != null) {
+        tokenLogin.isNotEmpty) {
       return Get.offNamed("/home-guru");
     } else {
       return Get.offNamed("/login");
@@ -219,11 +227,10 @@ class LoginController extends GetxController {
 
   Future<void> postTokenFCM() async {
     var _tokenFCM = AllMaterial.box.read("fcmToken");
-    var _tokenLogin = AllMaterial.box.read("token");
     var _postTokenFCMUrl = "http://10.0.2.2:2008/siswa/addTokenFCM";
     var _response = await http.post(
       headers: {
-        "Authorization": "Bearer $_tokenLogin",
+        "Authorization": "Bearer ${tokenLogin.value}",
       },
       body: {"tokenFCM": _tokenFCM},
       Uri.parse(_postTokenFCMUrl),
@@ -246,11 +253,10 @@ class LoginController extends GetxController {
   }
 
   Future<void> cekStatusFCM() async {
-    var _tokenLogin = AllMaterial.box.read("token");
     var _cekStatusFCMUrl = "http://10.0.2.2:2008/siswa/statusTokenFCM";
     var _response = await http.get(
       headers: {
-        "Authorization": "Bearer $_tokenLogin",
+        "Authorization": "Bearer ${tokenLogin.value}",
       },
       Uri.parse(
         _cekStatusFCMUrl,

@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "id": 2383,
+            "id_siswa": 1541,
+            "id_guru_pembimbing": null,
+            "id_pembimbing_dudi": null,
+            "judul": "kabar Baik Untukmu",
+            "isi": "Ajuan pklmu sedang diproses,tunggu verifikasi dari dudi yang kamu ajukan",
+            "read": []
+        },
+        {
+            "id": 279,
+            "id_siswa": 1541,
+            "id_guru_pembimbing": null,
+            "id_pembimbing_dudi": null,
+            "judul": "kabar Baik Untukmu",
+            "isi": "Ajuan pklmu telah diditerima oleh adit tech",
+            "read": []
+        }
+    ]
+}

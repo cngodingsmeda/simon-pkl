@@ -1,22 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class NotifikasiPageController extends GetxController {
-  var notifications = <Map<String, String>>[].obs;
+  final ScrollController scrollController = ScrollController();
 
   @override
   void onInit() {
     super.onInit();
-    FirebaseMessaging.instance.getInitialMessage();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if (message.notification != null) {
-        notifications.add({
-          "title": message.notification!.title ?? "No Title",
-          "body": message.notification!.body ?? "No Body",
-        });
-        print("Notification Added: ${message.notification!.title} - ${message.notification!.body}");
-        print("Current Notifications List Length: ${notifications.length}");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (scrollController.hasClients) {
+        scrollController.jumpTo(scrollController.position.maxScrollExtent);
       }
+      ;
     });
+    FirebaseMessaging.instance.getInitialMessage();
   }
 }

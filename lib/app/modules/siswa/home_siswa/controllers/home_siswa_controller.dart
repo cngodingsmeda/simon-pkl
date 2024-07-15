@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simon_pkl/app/data/models/notification_model.dart';
 import 'package:simon_pkl/app/modules/login/controllers/login_controller.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:http/http.dart' as http;
@@ -11,8 +12,12 @@ import 'package:simon_pkl/material/allmaterial.dart';
 import 'package:geolocator/geolocator.dart';
 
 class HomeSiswaController extends GetxController {
-  var tokenLoginSiswa = AllMaterial.box.read("token");
+  static List<NotificationModel> notifications = [];
+  static var klikNotif = false.obs;
+
+  var tokenLoginSiswa = LoginController.tokenLogin.value;
   var getDataSiswaUrl = "http://10.0.2.2:2008/siswa/getProfile";
+  var getNotificationUrl = "http://10.0.2.2:2008/siswa/getAllNotification";
   var postRadiusKoordinatUrl = "http://10.0.2.2:2008/siswa/cekRadiuskoordinat";
   // Beranda
   var loginC = LoginController();
@@ -51,6 +56,33 @@ class HomeSiswaController extends GetxController {
       update();
     } else {
       controller.logout();
+    }
+  }
+
+  // Notification
+  Future<void> getAllNotification() async {
+    try {
+      final response = await http.get(
+        Uri.parse(getNotificationUrl),
+        headers: {
+          "Authorization": "Bearer $tokenLoginSiswa",
+        },
+      );
+      var data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        print(data);
+        for (var item in data["data"]) {
+          notifications.add(NotificationModel.fromJson(item));
+        }
+        klikNotif.value = true;
+        print(notifications);
+        // Lakukan sesuatu dengan list notifications
+        update();
+      } else {
+        print("masuk ke else notification");
+      }
+    } catch (e) {
+      print("error di notif: $e");
     }
   }
 

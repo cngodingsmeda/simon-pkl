@@ -18,10 +18,10 @@ import 'package:skeletonizer/skeletonizer.dart';
 class BerandaPageController extends GetxController {
   var findStatusSiswaUrl = "http://10.0.2.2:2008/siswa/findPengajuanPending";
   var cancelPKLUrl = "http://10.0.2.2:2008/siswa/cancelPengajuanPkl";
-  var controllerHomeSiswa = HomeSiswaController();
+  var controllerHomeSiswa = Get.put(HomeSiswaController());
+  var tokenLogin = LoginController.tokenLogin.value;
 
   Future<void> cancelPKL(int idAjuanPKL) async {
-    var tokenLogin = AllMaterial.box.read("token");
     try {
       var response = await http.post(
         Uri.parse(cancelPKLUrl),
@@ -114,10 +114,9 @@ class BerandaPageController extends GetxController {
   }
 
   Future<void> findStatusSiswa() async {
-    var _tokenLogin = AllMaterial.box.read("token");
     var response = await http.get(
       Uri.parse(findStatusSiswaUrl),
-      headers: {"Authorization": "Bearer $_tokenLogin"},
+      headers: {"Authorization": "Bearer $tokenLogin"},
     );
     var data = jsonDecode(response.body);
     if (response.statusCode == 200 && data["data"] != null) {
@@ -908,8 +907,13 @@ class SelectNavigatorSiswa extends StatelessWidget {
                           SizedBox(height: 5),
                           msgAbsen == null
                               ? Text(
-                                  "Terjadi kesalahan dalam mengakses data, coba lagi nanti")
-                              : Text(toBeginningOfSentenceCase("${msgAbsen}!")),
+                                  "Terjadi kesalahan dalam mengakses data, coba lagi nanti",
+                                )
+                              : Text(
+                                  toBeginningOfSentenceCase(
+                                    "${msgAbsen}!",
+                                  ),
+                                ),
                         ],
                       ),
                       padding: EdgeInsets.all(20),

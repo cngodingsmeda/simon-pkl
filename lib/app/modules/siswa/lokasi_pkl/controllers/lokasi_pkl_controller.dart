@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:simon_pkl/app/modules/login/controllers/login_controller.dart';
 import 'dart:convert';
 import 'package:simon_pkl/material/allmaterial.dart';
 
@@ -8,7 +9,7 @@ class LokasiPklController extends GetxController {
   var intPage = 0.obs;
   var dataCountPage = 0.obs;
 
-  String tampungToken = AllMaterial.box.read("token");
+  String tampungToken = LoginController.tokenLogin.value;
   String get getDudiUrl =>
       "http://10.0.2.2:2008/siswa/getDudiFilter?page=${intPage.value + 1}";
   String postAjuanPKLUrl = "http://10.0.2.2:2008/siswa/pengajuanPkl";

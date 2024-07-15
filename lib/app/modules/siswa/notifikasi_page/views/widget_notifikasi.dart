@@ -19,9 +19,9 @@ class NotifikasiItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (contextTitle.contains("kabar baik untukmu!")) {
+    if (contextTitle.contains("kabar baik untukmu")) {
       contextImage.value = "assets/logo/accept.png";
-    } else if (contextTitle.contains("enunggu proses...")) {
+    } else if (contextTitle.contains("menunggu proses...")) {
       contextImage.value = "assets/logo/pending.png";
     } else if (contextTitle.contains("sayang sekali...")) {
       contextImage.value = "assets/logo/decline.png";

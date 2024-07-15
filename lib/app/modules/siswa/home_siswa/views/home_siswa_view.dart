@@ -32,7 +32,10 @@ class _HomeSiswaState extends State<HomeSiswa> {
       curve: Curves.ease,
     );
     if (index == 3 && ProfilePageView.getDataSiswa.isFalse) {
-      dataSiswa.fetchDataSiswa();
+      await dataSiswa.fetchDataSiswa();
+    }
+    else if (index == 2 && HomeSiswaController.klikNotif.isFalse) {
+      await dataSiswa.getAllNotification();
     }
   }
 
